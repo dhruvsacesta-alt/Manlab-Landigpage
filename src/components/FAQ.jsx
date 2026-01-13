@@ -6,14 +6,14 @@ const FAQItem = ({ question, answer }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="border-b border-black/5 py-4 last:border-none">
+        <div className="border-b border-[var(--primary)]/10 py-4 md:py-6 last:border-none">
             <button
-                className="w-full flex justify-between items-center text-left gap-8 group py-4"
+                className="w-full flex justify-between items-center text-left gap-8 group py-6 md:py-8"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <h3 className="text-sm md:text-base font-bold uppercase tracking-tight transition-colors group-hover:text-[var(--primary)]">{question}</h3>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center border border-black/5 transition-all ${isOpen ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-white'}`}>
-                    {isOpen ? <Minus size={14} /> : <Plus size={14} />}
+                <h3 className="text-lg md:text-xl font-bold uppercase tracking-tight transition-all text-[var(--text-dark)] group-hover:text-[var(--primary)] group-hover:translate-x-1">{question}</h3>
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center border border-[var(--primary)]/10 transition-all duration-500 shadow-sm ${isOpen ? 'bg-[var(--primary)] text-white border-[var(--primary)] rotate-180' : 'bg-white group-hover:border-[var(--primary)]/30 group-hover:scale-110'}`}>
+                    {isOpen ? <Minus size={18} strokeWidth={1.5} /> : <Plus size={18} strokeWidth={1.5} />}
                 </div>
             </button>
             <AnimatePresence>
@@ -22,10 +22,10 @@ const FAQItem = ({ question, answer }) => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
                         className="overflow-hidden"
                     >
-                        <p className="pb-6 pt-2 text-xs md:text-sm opacity-40 leading-relaxed max-w-2xl font-medium italic">
+                        <p className="pb-10 pt-2 text-base md:text-lg text-[var(--text-light)] leading-[1.8] max-w-3xl font-medium">
                             "{answer}"
                         </p>
                     </motion.div>
@@ -56,7 +56,7 @@ const FAQ = () => {
     ];
 
     return (
-        <section className="bg-white py-20 md:py-24">
+        <section className="bg-[var(--background)] py-32 md:py-48">
             {/* JSON-LD for FAQ Schema */}
             <script type="application/ld+json">
                 {JSON.stringify({
@@ -73,15 +73,18 @@ const FAQ = () => {
                 })}
             </script>
             <div className="container-wide">
-                <div className="text-center mb-16 md:mb-20">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-6 block leading-none">Inquiry Hub</span>
-                    <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight">Technical <br /><span className="italic font-light opacity-50">Clarification.</span></h2>
+                <div className="text-center mb-24 md:mb-32">
+                    <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tight text-[var(--text-dark)] leading-tight">
+                        Curiosity is <br /><span className="text-[var(--primary)] italic font-light lowercase">scientific.</span>
+                    </h2>
                 </div>
 
-                <div className="max-w-3xl mx-auto px-4">
-                    {faqs.map((faq, i) => (
-                        <FAQItem key={i} {...faq} />
-                    ))}
+                <div className="max-w-4xl mx-auto">
+                    <div className="bg-white/30 backdrop-blur-xl rounded-[3rem] p-10 md:p-16 border border-[var(--primary)]/5 shadow-[0_40px_80px_-20px_rgba(166,123,91,0.1)]">
+                        {faqs.map((faq, i) => (
+                            <FAQItem key={i} {...faq} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

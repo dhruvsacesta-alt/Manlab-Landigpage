@@ -32,19 +32,19 @@ const JourneySteps = () => {
     ];
 
     return (
-        <section className="bg-white py-20">
+        <section className="bg-[var(--background)] py-32 md:py-48">
             <div className="container-wide">
-                <div className="max-w-2xl mb-20">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight uppercase tracking-tight">
-                        Hair analysis, <br />
-                        <span className="text-[var(--primary)] italic font-light">Precision Protocol.</span>
+                <div className="max-w-3xl mb-32">
+                    <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-tight uppercase tracking-tight text-[var(--text-dark)]">
+                        Hair loss, <br />
+                        <span className="text-[var(--primary)] italic font-light lowercase">decoded.</span>
                     </h2>
-                    <p className="text-base md:text-lg opacity-50 font-medium">
-                        A rigorous clinical framework designed to identify and address the biological root causes of thinning.
+                    <p className="text-lg md:text-xl text-[var(--text-light)] font-medium leading-relaxed max-w-2xl opacity-80">
+                        "Our clinical framework integrates algorithmic diagnostics and licensed medical expertise to identify biological root causes with precision."
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 md:gap-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-12 md:gap-16">
                     {steps.map((step, idx) => (
                         <motion.div
                             key={idx}
@@ -54,13 +54,13 @@ const JourneySteps = () => {
                             transition={{ delay: idx * 0.1 }}
                             className="group"
                         >
-                            <div className="w-16 h-16 rounded-2xl bg-[var(--surface)] flex items-center justify-center text-[var(--primary)] mb-6 transition-all duration-500 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-black/5 group-hover:-translate-y-1 border border-transparent group-hover:border-black/5">
-                                {React.cloneElement(step.icon, { size: 24, strokeWidth: 1.5 })}
+                            <div className="w-20 h-20 rounded-[1.5rem] bg-white flex items-center justify-center text-[var(--primary)] mb-10 transition-all duration-700 group-hover:bg-[var(--primary)] group-hover:text-white group-hover:shadow-[0_20px_40px_-10px_rgba(166,123,91,0.3)] group-hover:-translate-y-2 border border-[var(--primary)]/5">
+                                {React.cloneElement(step.icon, { size: 28, strokeWidth: 1.2 })}
                             </div>
                             <div className="px-1">
-                                <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[var(--primary)]/30 mb-3">Protocol 0{idx + 1}</p>
-                                <h3 className="text-sm font-bold mb-3 uppercase tracking-tight leading-snug">{step.title}</h3>
-                                <p className="text-xs leading-relaxed opacity-40 font-medium">{step.desc}</p>
+                                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--primary)] opacity-40 mb-4">Step 0{idx + 1}</h4>
+                                <h3 className="text-base font-bold mb-6 uppercase tracking-tight text-[var(--text-dark)] group-hover:text-[var(--primary)] transition-colors leading-tight">{step.title}</h3>
+                                <p className="text-sm leading-relaxed text-[var(--text-light)] opacity-70 font-medium">"{step.desc}"</p>
                             </div>
                         </motion.div>
                     ))}

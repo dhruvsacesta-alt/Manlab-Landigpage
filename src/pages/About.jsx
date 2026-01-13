@@ -19,16 +19,14 @@ const About = () => {
     ];
 
     return (
-        <div className="bg-white min-h-screen relative overflow-x-hidden">
+        <div className="bg-[var(--background)] min-h-screen relative overflow-x-hidden text-[var(--text-dark)]">
             {/* Sub-navigation */}
-            <div className="pt-24 pb-6 border-b border-black/5 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+            <div className="pt-24 pb-6 border-b border-[var(--primary)]/5 bg-[var(--background)]/80 backdrop-blur-md sticky top-0 z-50">
             </div>
 
-            {/* Hero Section - Elevated Logo with Behind-the-Scenes Data */}
+            {/* Hero Section */}
             <section className="relative z-30">
-                <div className="container-wide py-16 relative flex flex-col items-center justify-center min-h-[40vh]">
-
-                    {/* Background Rotating Data */}
+                <div className="container-wide py-20 relative flex flex-col items-center justify-center min-h-[45vh]">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none z-0">
                         <motion.div
                             animate={{ rotate: 360 }}
@@ -46,108 +44,97 @@ const About = () => {
                         </motion.div>
                     </div>
 
-                    {/* Logo */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.98 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="bg-white p-6 md:p-10 rounded-full shadow-2xl relative z-50 border border-black/5"
+                        className="bg-white/50 backdrop-blur-xl p-8 md:p-12 rounded-[3.5rem] shadow-2xl relative z-50 border border-[var(--primary)]/10"
                     >
-                        <img src="/logo.png" alt="Man Labs" className="h-20 md:h-28 w-auto object-contain" />
+                        <img src="/logo.png" alt="Man Labs" className="h-24 md:h-32 w-auto object-contain grayscale opacity-60" />
                     </motion.div>
                 </div>
             </section>
 
             {/* Why Choose Man Labs */}
-            <section className="bg-white relative z-40 -mt-16 md:-mt-20">
+            <section className="bg-[var(--background)] relative z-40 -mt-20">
                 <div className="container-wide">
-                    <div className="text-center mb-16">
-                        <motion.p
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-[9px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-4"
-                        >
-                            Institutional Differentiator
-                        </motion.p>
-                    </div>
-                    <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center max-w-6xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-20 md:gap-32 items-center max-w-7xl mx-auto">
                         <div>
                             <motion.h2
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="text-3xl md:text-5xl font-bold leading-tight mb-8 uppercase tracking-tight"
+                                className="text-4xl md:text-6xl font-bold leading-tight mb-10 uppercase tracking-tight text-[var(--text-dark)]"
                             >
-                                Clinical efficacy over <br /><span className="text-[var(--primary)] italic font-light opacity-50">commodity products.</span>
+                                Clinical efficacy <br />over <span className="text-[var(--primary)] italic font-light lowercase">commodity care.</span>
                             </motion.h2>
-                            <p className="text-base md:text-lg opacity-40 mb-10 font-medium leading-relaxed">
-                                Most commercial entities prioritize distribution. We prioritize biological resolution:
+                            <p className="text-lg md:text-xl text-[var(--text-light)] mb-12 font-medium leading-relaxed opacity-80">
+                                Most entities prioritize distribution. We prioritize biological resolution through evidence-based architecture.
                             </p>
 
-                            <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest mb-12 opacity-30 flex-wrap">
-                                <span>Diagnostics</span> <span className="text-[var(--primary)]">→</span>
-                                <span>Protocol</span> <span className="text-[var(--primary)]">→</span>
-                                <span>Optimization</span> <span className="text-[var(--primary)]">→</span>
+                            <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-[0.3em] mb-14 text-[var(--primary)] opacity-40 flex-wrap">
+                                <span>Diagnostics</span> <span className="text-black/10">→</span>
+                                <span>Protocol</span> <span className="text-black/10">→</span>
+                                <span>Optimization</span> <span className="text-black/10">→</span>
                                 <span>Resolution</span>
                             </div>
 
-                            <ul className="space-y-5">
+                            <ul className="space-y-6">
                                 {[
                                     "Evidence-based treatment architecture",
                                     "AI-assisted diagnostic verification",
                                     "Licensed physician clinical review",
                                     "Adaptive follow-up protocols",
-                                    "Modular simplified care routines",
                                     "Pharmacological-grade distribution"
                                 ].map((item, i) => (
-                                    <li key={i} className="flex items-start gap-4">
-                                        <div className="w-5 h-5 rounded-full bg-[var(--surface)] text-[var(--primary)] flex items-center justify-center shrink-0 mt-0.5 border border-black/5">
-                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <li key={i} className="flex items-start gap-5">
+                                        <div className="w-6 h-6 rounded-full bg-white text-[var(--primary)] flex items-center justify-center shrink-0 mt-0.5 border border-[var(--primary)]/10 shadow-sm">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         </div>
-                                        <span className="text-sm font-medium text-black/60">{item}</span>
+                                        <span className="text-base font-medium text-[var(--text-light)]">{item}</span>
                                     </li>
                                 ))}
                             </ul>
                         </div>
 
                         <div className="relative">
-                            <div className="aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl bg-[var(--surface)] relative z-10 border border-black/5">
+                            <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(45,41,38,0.2)] bg-white relative z-10 border border-[var(--primary)]/10">
                                 <img src={doctorImage} alt="Man Labs Doctor" className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700" />
                             </div>
-                            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[var(--primary)] rounded-full blur-[100px] opacity-10 -z-10"></div>
+                            <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-[var(--primary)] rounded-full blur-[120px] opacity-10 -z-10"></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Why We Started */}
-            <section className="py-24 md:py-32 bg-[var(--surface)] relative overflow-hidden mt-24">
+            {/* Why We Started (Project Foundation) */}
+            <section className="py-32 md:py-48 bg-white/30 backdrop-blur-sm relative overflow-hidden mt-32 border-t border-[var(--primary)]/5">
                 <div className="container-wide relative z-10">
-                    <div className="max-w-3xl mx-auto text-center">
-                        <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-8 block">Project Foundation</span>
-                        <h2 className="text-2xl md:text-3xl font-bold mb-12 uppercase tracking-tight">Systemic <br /><span className="italic font-light opacity-50">Intervention.</span></h2>
-                        <div className="space-y-10 text-lg md:text-xl leading-relaxed font-heading opacity-50 font-medium italic">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-16 uppercase tracking-tight text-[var(--text-dark)]">
+                            Systemic <br /><span className="text-[var(--primary)] italic font-light lowercase">Intervention.</span>
+                        </h2>
+                        <div className="space-y-12 text-xl md:text-2xl leading-relaxed text-[var(--text-light)] font-medium italic opacity-80">
                             <p>
                                 "Male aesthetics in the Indian subcontinent is often mismanaged through anecdotal remedies and opaque distribution channels."
                             </p>
                             <p>
                                 "The barrier to clinical-grade intervention remains high due to geographical constraints and the absence of standardized protocols."
                             </p>
-                            <p className="text-[var(--primary)] not-italic font-bold uppercase text-xs tracking-widest opacity-80">
-                                Institutional Goal: accessible pharmacological precision for every man.
+                            <p className="text-[var(--primary)] not-italic font-bold uppercase text-sm tracking-[0.4em] opacity-100 mt-16">
+                                Accessible medical precision for every man.
                             </p>
                         </div>
                     </div>
                 </div>
                 {/* Decor */}
-                <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+                <div className="absolute top-0 left-0 w-full h-full opacity-[0.02] pointer-events-none">
                     <svg viewBox="0 0 100 100" className="w-full h-full"><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5" /></pattern><rect width="100" height="100" fill="url(#grid)" /></svg>
                 </div>
             </section>
 
             {/* Footer Note */}
-            <div className="py-16 text-center opacity-20 text-[8px] font-bold uppercase tracking-[0.3em] border-t border-black/5">
-                © 2025 Man Labs Technologies Inc. • Pharmacological Standards Council Approved
+            <div className="py-20 text-center opacity-30 text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--text-light)] border-t border-[var(--primary)]/5">
+                © 2025 Man Labs India • Institutional Oversight Mandatory
             </div>
         </div>
     );

@@ -22,29 +22,29 @@ const StepWrapper = ({ title, subtitle, step, children, backStep, nextStep }) =>
     >
         <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--primary)]/5 rounded-bl-[60px] pointer-events-none"></div>
 
-        <div className="mb-8 shrink-0">
-            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-3 block">Protocol {step + 1} • Section 12</span>
-            <h2 className="text-xl md:text-2xl font-bold mb-1 leading-tight tracking-tight uppercase">{title}</h2>
-            {subtitle && <p className="opacity-40 text-[10px] md:text-xs font-medium uppercase tracking-widest">{subtitle}</p>}
+        <div className="mb-10 shrink-0">
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-4 block">Protocol {step + 1} • Section 12</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 leading-tight tracking-tight uppercase">{title}</h2>
+            {subtitle && <p className="opacity-50 text-xs md:text-sm font-medium uppercase tracking-widest">{subtitle}</p>}
         </div>
 
         <div className="flex-grow space-y-4">
             {children}
         </div>
 
-        <div className="mt-8 flex justify-between items-center pt-6 border-t border-black/5 shrink-0">
+        <div className="mt-8 flex justify-between items-center pt-8 border-t border-black/5 shrink-0">
             {step > 0 ? (
                 <button
                     type="button"
                     onClick={backStep}
-                    className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-30 hover:opacity-100 transition-opacity"
+                    className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] opacity-30 hover:opacity-100 transition-opacity"
                 >
                     Previous
                 </button>
             ) : <div />}
 
-            <Button onClick={nextStep} className="h-10 px-8 text-[10px] uppercase font-bold tracking-widest">
-                {step === 11 ? 'Analyze Protocol' : 'Next Step'} <ChevronRight size={14} className="ml-1 opacity-50" />
+            <Button onClick={nextStep} className="h-12 px-10 text-[11px] uppercase font-bold tracking-widest">
+                {step === 11 ? 'Analyze Protocol' : 'Next Step'} <ChevronRight size={16} className="ml-2 opacity-50" />
             </Button>
         </div>
     </motion.div>
@@ -88,15 +88,15 @@ const Assessment = () => {
                                 <p className="text-sm font-medium">Your answers are encrypted and strictly confidential. Reviewed only by licensed medical doctors according to HIPAA standards.</p>
                             </div>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-5">
                             {[
                                 { id: '01', text: "Clinical Questionnaire" },
                                 { id: '02', text: "Scalp Analysis (Photo Upload)" },
                                 { id: '03', text: "AI & Doctor Review" }
                             ].map(item => (
-                                <div key={item.id} className="flex items-center gap-5 p-5 bg-[var(--surface)]/50 border border-black/5 rounded-2xl">
-                                    <div className="w-8 h-8 rounded-full bg-white shadow-sm text-[var(--primary)] flex items-center justify-center font-bold text-[10px] border border-black/5">{item.id}</div>
-                                    <p className="font-bold text-[9px] uppercase tracking-widest opacity-40">{item.text}</p>
+                                <div key={item.id} className="flex items-center gap-6 p-6 bg-[var(--surface)]/50 border border-black/5 rounded-2xl">
+                                    <div className="w-10 h-10 rounded-full bg-white shadow-sm text-[var(--primary)] flex items-center justify-center font-bold text-xs border border-black/5">{item.id}</div>
+                                    <p className="font-bold text-[10px] md:text-xs uppercase tracking-widest opacity-50">{item.text}</p>
                                 </div>
                             ))}
                         </div>
@@ -110,13 +110,13 @@ const Assessment = () => {
                                 type="number"
                                 placeholder="00"
                                 onWheel={(e) => e.target.blur()}
-                                className="w-full text-3xl font-bold p-6 bg-[var(--surface)]/50 rounded-2xl outline-none focus:ring-1 ring-[var(--primary)] transition-all placeholder:opacity-10 text-center border border-black/5"
+                                className="w-full text-4xl font-bold p-8 bg-[var(--surface)]/50 rounded-2xl outline-none focus:ring-1 ring-[var(--primary)] transition-all placeholder:opacity-10 text-center border border-black/5"
                                 onChange={(e) => handleAnswer('age', e.target.value)}
                                 value={answers.age || ''}
                                 autoFocus
                             />
-                            <div className="absolute -bottom-8 left-0 right-0 text-center">
-                                <span className="text-[8px] font-bold uppercase tracking-widest opacity-30">Years of Age</span>
+                            <div className="absolute -bottom-10 left-0 right-0 text-center">
+                                <span className="text-[10px] font-bold uppercase tracking-widest opacity-40">Years of Age</span>
                             </div>
                         </div>
                         {answers.age && answers.age < 18 && (
@@ -170,10 +170,10 @@ const Assessment = () => {
                                             handleAnswer(key, val);
                                         }
                                     }}
-                                    className={`w-full p-4 md:p-5 text-left font-bold rounded-xl md:rounded-2xl transition-all border flex justify-between items-center gap-3 ${isSelected ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-[var(--surface)] border-black/5 hover:border-black/10'}`}
+                                    className={`w-full p-5 md:p-6 text-left font-bold rounded-xl md:rounded-2xl transition-all border flex justify-between items-center gap-4 ${isSelected ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-[var(--surface)] border-black/5 hover:border-black/10'}`}
                                 >
-                                    <span className="text-[10px] md:text-[11px] uppercase tracking-tight leading-tight">{opt}</span>
-                                    {isSelected && <Check size={12} className="shrink-0" />}
+                                    <span className="text-xs md:text-sm uppercase tracking-tight leading-tight">{opt}</span>
+                                    {isSelected && <Check size={14} className="shrink-0" />}
                                 </button>
                             );
                         })}
@@ -198,10 +198,10 @@ const Assessment = () => {
                                         const next = isSelected ? current.filter(v => v !== opt.val) : [...current, opt.val];
                                         handleAnswer('pattern', next);
                                     }}
-                                    className={`w-full p-4 md:p-5 text-left font-bold rounded-xl md:rounded-2xl transition-all border flex justify-between items-center gap-3 ${isSelected ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-[var(--surface)] border-black/5 hover:border-black/10'}`}
+                                    className={`w-full p-5 md:p-6 text-left font-bold rounded-xl md:rounded-2xl transition-all border flex justify-between items-center gap-4 ${isSelected ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-[var(--surface)] border-black/5 hover:border-black/10'}`}
                                 >
-                                    <span className="text-[10px] md:text-[11px] uppercase tracking-tight leading-tight">{opt.label}</span>
-                                    {isSelected && <Check size={12} className="shrink-0" />}
+                                    <span className="text-xs md:text-sm uppercase tracking-tight leading-tight">{opt.label}</span>
+                                    {isSelected && <Check size={14} className="shrink-0" />}
                                 </button>
                             );
                         })}
@@ -228,9 +228,9 @@ const Assessment = () => {
                                         const next = isSelected ? current.filter(v => v !== opt.val) : [...current, opt.val];
                                         handleAnswer('triggers', next);
                                     }}
-                                    className={`p-2 md:p-4 text-center font-bold rounded-xl md:rounded-2xl transition-all border-2 ${isSelected ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-[var(--surface)] border-transparent'}`}
+                                    className={`p-4 md:p-6 text-center font-bold rounded-xl md:rounded-2xl transition-all border-2 ${isSelected ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-[var(--surface)] border-transparent'}`}
                                 >
-                                    <p className="text-[9px] md:text-[11px] uppercase tracking-tight leading-tight">{opt.label}</p>
+                                    <p className="text-xs md:text-sm uppercase tracking-tight leading-tight">{opt.label}</p>
                                 </button>
                             );
                         })}
@@ -255,9 +255,9 @@ const Assessment = () => {
                                         const next = isSelected ? current.filter(v => v !== opt.val) : [...current, opt.val];
                                         handleAnswer('family', next);
                                     }}
-                                    className={`p-2 md:p-4 text-center font-bold rounded-xl md:rounded-2xl transition-all border-2 ${isSelected ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-[var(--surface)] border-transparent'}`}
+                                    className={`p-4 md:p-6 text-center font-bold rounded-xl md:rounded-2xl transition-all border-2 ${isSelected ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-[var(--surface)] border-transparent'}`}
                                 >
-                                    <p className="text-[9px] md:text-[11px] uppercase tracking-tight leading-tight">{opt.label}</p>
+                                    <p className="text-xs md:text-sm uppercase tracking-tight leading-tight">{opt.label}</p>
                                 </button>
                             );
                         })}
@@ -274,28 +274,28 @@ const Assessment = () => {
                                 { name: 'Right', example: rightExample },
                                 { name: 'Crown', example: crownExample }
                             ].map((item, i) => (
-                                <div key={i} className="bg-[var(--surface)]/30 p-4 rounded-2xl border border-black/5">
-                                    <div className="flex justify-between items-center mb-3">
-                                        <span className="text-[9px] font-bold uppercase tracking-widest opacity-40">{item.name} View</span>
-                                        {answers[`photo_${i}`] && <div className="bg-[var(--primary)] text-white p-0.5 rounded-full"><Check size={10} /></div>}
+                                <div key={i} className="bg-[var(--surface)]/30 p-5 rounded-2xl border border-black/5">
+                                    <div className="flex justify-between items-center mb-4">
+                                        <span className="text-[10px] font-bold uppercase tracking-widest opacity-50">{item.name} View</span>
+                                        {answers[`photo_${i}`] && <div className="bg-[var(--primary)] text-white p-1 rounded-full"><Check size={12} /></div>}
                                     </div>
-                                    <div className="flex gap-3">
-                                        <div className="w-1/2 aspect-square rounded-xl overflow-hidden relative border border-black/5 bg-white">
+                                    <div className="flex gap-4">
+                                        <div className="w-1/2 aspect-square rounded-xl overflow-hidden relative border border-black/5 bg-white shadow-sm">
                                             <img src={item.example} alt={item.name} className="w-full h-full object-cover transition-all" />
-                                            <div className="absolute top-1.5 left-1.5 bg-black/60 backdrop-blur-md text-[7px] text-white px-1.5 py-0.5 rounded-full font-bold uppercase tracking-widest">Example</div>
+                                            <div className="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-[9px] text-white px-2 py-1 rounded-full font-bold uppercase tracking-widest">Example</div>
                                         </div>
                                         <div
                                             onClick={() => handleAnswer(`photo_${i}`, true)}
-                                            className={`w-1/2 aspect-square rounded-xl border-1.5 border-dashed flex flex-col items-center justify-center gap-1.5 cursor-pointer transition-all ${answers[`photo_${i}`] ? 'bg-white border-[var(--primary)]' : 'border-black/10 hover:border-[var(--primary)]/50 bg-white/50'}`}
+                                            className={`w-1/2 aspect-square rounded-xl border-1.5 border-dashed flex flex-col items-center justify-center gap-2 cursor-pointer transition-all ${answers[`photo_${i}`] ? 'bg-white border-[var(--primary)] shadow-md' : 'border-black/10 hover:border-[var(--primary)]/50 bg-white/50'}`}
                                         >
-                                            <Camera className={`${answers[`photo_${i}`] ? 'text-[var(--primary)]' : 'opacity-20'} group-hover:opacity-100 transition-opacity`} size={20} />
-                                            <span className="text-[8px] font-bold uppercase tracking-widest opacity-40">Upload</span>
+                                            <Camera className={`${answers[`photo_${i}`] ? 'text-[var(--primary)]' : 'opacity-20'} group-hover:opacity-100 transition-opacity`} size={24} />
+                                            <span className="text-[10px] font-bold uppercase tracking-widest opacity-50">Upload</span>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        <p className="text-center text-[10px] opacity-40 mt-8 font-black uppercase tracking-[0.2em] italic">* Your privacy is our priority. These photos are strictly for clinical diagnostic use.</p>
+                        <p className="text-center text-xs opacity-50 mt-10 font-black uppercase tracking-[0.2em] italic max-w-xl mx-auto leading-relaxed">* Your privacy is our priority. These photos are strictly for clinical diagnostic use.</p>
                     </>
                 );
             default: return null;
@@ -332,7 +332,7 @@ const Assessment = () => {
                                 <div key={i} className={`h-full flex-1 rounded-full transition-all duration-500 ${i <= step ? 'bg-[var(--primary)]' : 'bg-black/5'}`} />
                             ))}
                         </div>
-                        <span className="text-[8px] font-bold opacity-20 uppercase tracking-[0.2em] whitespace-nowrap">{Math.round((step / 11) * 100)}% Protocol Saturation</span>
+                        <span className="text-[10px] font-bold opacity-30 uppercase tracking-[0.2em] whitespace-nowrap">{Math.round((step / 11) * 100)}% Protocol Saturation</span>
                     </div>
                 </div>
 

@@ -10,20 +10,21 @@
   --primary-hover: #8C6246;
   /* Deep Copper */
   --secondary: #EBE5DE;
-  /* Darker Beige (Stone) */
-  --surface: #F8F5F2;
-  /* Ultra-light Creamy Beige */
+  /* Stone Beige */
+  --surface: #FFFFFF;
+  /* Pure White for cards */
   --accent: #D4C5B9;
   /* Pale Mocha */
-  --border: rgba(0, 0, 0, 0.04);
-  --shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
-  --glass: rgba(235, 229, 222, 0.95);
+  --border: rgba(166, 123, 91, 0.1);
+  --shadow: 0 20px 40px -10px rgba(45, 41, 38, 0.05);
+  --glass: rgba(245, 241, 238, 0.95);
 
-  --background: #FFFFFF;
-  --text-dark: #1A1A1A;
-  /* Near Black for clinical text */
-  --text-light: #666666;
-  /* Soft grey for secondary text */
+  --background: #F5F1EE;
+  /* Warm Beige Background from image */
+  --text-dark: #2D2926;
+  /* Warm Charcoal */
+  --text-light: #6D6864;
+  /* Warm Muted Brown-Grey */
 
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;

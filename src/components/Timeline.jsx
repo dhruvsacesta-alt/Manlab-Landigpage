@@ -26,31 +26,34 @@ const Timeline = () => {
     ];
 
     return (
-        <section className="py-20 md:py-24">
+        <section className="bg-[var(--background)] py-24 md:py-32">
             <div className="container-wide">
                 <div className="grid lg:grid-cols-2 gap-20 md:gap-32 items-center">
                     <div>
-                        <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-6 block">Clinical Trajectory</span>
-                        <h2 className="text-2xl md:text-3xl font-bold mb-8 leading-tight tracking-tight uppercase">Progression of <br /><span className="italic font-light opacity-50">cellular response.</span></h2>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight tracking-tight uppercase">
+                            What results <br />
+                            <span className="text-[var(--primary)] italic font-light lowercase">usually look like.</span>
+                        </h2>
 
-                        <p className="text-base md:text-lg opacity-40 mb-10 font-medium max-w-md">
-                            Biological stabilization occurs incrementally. Consistent pharmacological adherence is critical for sustained follicular restoration.
+                        <p className="text-base md:text-lg text-[var(--text-light)] mb-12 font-medium max-w-md leading-relaxed">
+                            "Every hair journey is unique. These phases represent standard clinical progression and follicular optimization."
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <div className="p-5 bg-[var(--surface)] rounded-2xl flex-1 border border-black/5">
-                                <p className="text-xl font-bold">Protocol 01</p>
-                                <p className="text-[9px] uppercase font-bold opacity-30 tracking-widest mt-1">Initial Application</p>
+
+                        <div className="flex flex-col sm:flex-row gap-6">
+                            <div className="p-8 bg-white/60 backdrop-blur rounded-3xl flex-1 border border-[var(--primary)]/5 shadow-lg">
+                                <p className="text-2xl font-bold text-[var(--text-dark)] mb-2">Day 1</p>
+                                <p className="text-[11px] uppercase font-bold text-[var(--primary)] tracking-widest opacity-60">Initial Protocol</p>
                             </div>
-                            <div className="p-5 bg-[var(--surface)] rounded-2xl flex-1 border border-black/5">
-                                <p className="text-xl font-bold">Protocol 90</p>
-                                <p className="text-[9px] uppercase font-bold opacity-30 tracking-widest mt-1">Cellular Stabilization</p>
+                            <div className="p-8 bg-white/60 backdrop-blur rounded-3xl flex-1 border border-[var(--primary)]/5 shadow-lg">
+                                <p className="text-2xl font-bold text-[var(--text-dark)] mb-2">Day 180</p>
+                                <p className="text-[11px] uppercase font-bold text-[var(--primary)] tracking-widest opacity-60">Visible Regrowth</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="space-y-12 relative">
                         {/* Visual Line */}
-                        <div className="absolute left-[23px] md:left-[27px] top-4 bottom-4 w-px bg-black opacity-[0.05] z-0"></div>
+                        <div className="absolute left-[27px] md:left-[31px] top-6 bottom-6 w-px bg-black opacity-[0.05] z-0"></div>
 
                         {phases.map((phase, i) => (
                             <motion.div
@@ -58,17 +61,17 @@ const Timeline = () => {
                                 initial={{ opacity: 0, x: 20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
-                                className="flex gap-8 relative z-10"
+                                className="flex gap-10 relative z-10"
                             >
-                                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border border-black/5 flex items-center justify-center shrink-0 shadow-sm">
-                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--surface)] flex items-center justify-center text-[10px] font-bold text-[var(--primary)]">
+                                <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white border border-[var(--primary)]/5 flex items-center justify-center shrink-0 shadow-xl">
+                                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[var(--background)] flex items-center justify-center text-[12px] font-bold text-[var(--primary)]">
                                         {i + 1}
                                     </div>
                                 </div>
-                                <div>
-                                    <p className="text-[9px] font-bold text-[var(--primary)]/40 uppercase tracking-[0.2em] mb-2">{phase.time}</p>
-                                    <h3 className="text-sm font-bold mb-3 uppercase tracking-tight">{phase.title}</h3>
-                                    <p className="text-xs opacity-40 leading-relaxed font-medium italic">"{phase.desc}"</p>
+                                <div className="pt-2">
+                                    <p className="text-[11px] font-bold text-[var(--primary)] opacity-40 uppercase tracking-[0.2em] mb-2">{phase.time}</p>
+                                    <h3 className="text-base font-bold mb-3 uppercase tracking-wider text-[var(--text-dark)]">{phase.title}</h3>
+                                    <p className="text-sm text-[var(--text-light)] opacity-70 leading-relaxed font-medium italic">"{phase.desc}"</p>
                                 </div>
                             </motion.div>
                         ))}

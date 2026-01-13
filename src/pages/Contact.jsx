@@ -49,20 +49,15 @@ const Contact = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-white text-[var(--text-dark)] overflow-x-hidden pt-32 pb-48">
+        <div className="min-h-screen bg-[var(--background)] text-[var(--text-dark)] overflow-x-hidden pt-32 pb-48">
             <SEO
                 title="Contact Medical Support"
                 description="Connect with Man Labs' medical team for queries regarding hair loss treatments, prescriptions, or order tracking."
             />
 
-            {/* Background Blobs */}
-            <div className="fixed inset-0 pointer-events-none overflow-hidden opacity-10">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[var(--primary)] rounded-full blur-[120px]"></div>
-            </div>
-
             <div className="container-wide relative z-10">
                 <div className="max-w-6xl mx-auto px-4">
-                    <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-start">
+                    <div className="grid lg:grid-cols-2 gap-16 md:gap-32 items-start">
 
                         {/* Left Column: Info Hub */}
                         <motion.div
@@ -70,13 +65,14 @@ const Contact = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-6 block">Support Protocol</span>
-                            <h1 className="text-3xl md:text-5xl font-bold mb-8 uppercase tracking-tight leading-tight">Connect with <br /><span className="italic font-light opacity-50">clinical care.</span></h1>
-                            <p className="text-base md:text-lg opacity-40 mb-12 font-medium leading-relaxed max-w-md">
-                                Our medical support infrastructure is designed to provide immediate resolution for physiological and pharmacological inquiries.
+                            <h1 className="text-4xl md:text-6xl font-bold mb-10 uppercase tracking-tight leading-tight text-[var(--text-dark)]">
+                                Connect with <br /><span className="text-[var(--primary)] italic font-light lowercase">clinical care.</span>
+                            </h1>
+                            <p className="text-lg md:text-xl text-[var(--text-light)] mb-14 font-medium leading-relaxed max-w-md opacity-80">
+                                "Proven medicine. Clear guidance. No guesswork. Our medical team is ready to assist your journey."
                             </p>
 
-                            <div className="grid sm:grid-cols-1 gap-4 mb-12 max-w-md">
+                            <div className="grid sm:grid-cols-1 gap-6 mb-12 max-w-md">
                                 {contactMethods.map((method, idx) => (
                                     <motion.a
                                         key={idx}
@@ -86,20 +82,19 @@ const Contact = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.1 + idx * 0.1 }}
-                                        className="flex items-center gap-4 p-4 rounded-2xl bg-[var(--surface)] border border-black/5 hover:border-[var(--primary)]/30 hover:bg-white transition-all group shadow-sm hover:shadow-xl"
+                                        className="flex items-center gap-6 p-6 rounded-[2rem] bg-white border border-[var(--primary)]/5 hover:border-[var(--primary)]/20 transition-all group shadow-xl hover:-translate-y-1"
                                     >
-                                        <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center border border-black/5 group-hover:scale-105 transition-transform shrink-0">
-                                            {React.cloneElement(method.icon, { size: 16, strokeWidth: 1.5 })}
+                                        <div className="w-14 h-14 rounded-2xl bg-[var(--background)] flex items-center justify-center border border-[var(--primary)]/5 group-hover:scale-105 transition-transform shrink-0">
+                                            {React.cloneElement(method.icon, { size: 20, strokeWidth: 1.2 })}
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <h4 className="font-bold text-[8px] uppercase tracking-widest opacity-30 mb-1">{method.title}</h4>
-                                            <p className="text-xs md:text-sm font-bold uppercase tracking-tight truncate">{method.detail}</p>
+                                            <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-[var(--primary)] opacity-40 mb-1">{method.title}</h4>
+                                            <p className="text-base font-bold uppercase tracking-tight truncate">{method.detail}</p>
                                         </div>
-                                        <ArrowRight className="opacity-0 group-hover:opacity-30 transition-opacity text-black shrink-0" size={14} />
+                                        <ArrowRight className="opacity-0 group-hover:opacity-40 transition-opacity text-[var(--primary)] shrink-0" size={18} />
                                     </motion.a>
                                 ))}
                             </div>
-
                         </motion.div>
 
                         {/* Right Column: Interactive Form */}
@@ -107,51 +102,50 @@ const Contact = () => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="bg-[var(--text-dark)] rounded-[32px] p-8 md:p-12 text-white relative shadow-2xl overflow-hidden border border-white/5"
+                            className="bg-[var(--text-dark)] rounded-[3rem] p-10 md:p-14 text-white relative shadow-[0_50px_100px_-20px_rgba(45,41,38,0.3)] overflow-hidden border border-white/5"
                         >
                             {/* Form Decor */}
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--primary)] rounded-full blur-[100px] opacity-10 -mr-32 -mt-32"></div>
+                            <div className="absolute top-0 right-0 w-80 h-80 bg-[var(--primary)] rounded-full blur-[120px] opacity-[0.15] -mr-40 -mt-40"></div>
 
                             <div className="relative z-10">
-                                <span className="text-[8px] font-bold uppercase tracking-[0.3em] opacity-30 mb-2 block">Direct Transmission</span>
-                                <h3 className="text-xl md:text-2xl font-bold mb-10 uppercase tracking-tight text-white">Clinical Inquiry</h3>
-                                <form onSubmit={handleSubmit} className="space-y-8">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <h3 className="text-2xl md:text-3xl font-bold mb-12 uppercase tracking-tight text-white">Clinical Inquiry</h3>
+                                <form onSubmit={handleSubmit} className="space-y-10">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                         <div className="space-y-4">
-                                            <label className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-30">Full Identification</label>
+                                            <label className="text-[10px] font-bold uppercase tracking-widest text-white opacity-40">Full Name</label>
                                             <input
                                                 type="text"
                                                 name="name"
                                                 value={form.name}
                                                 onChange={handleChange}
                                                 placeholder="Enter full name"
-                                                className="w-full bg-transparent border-b border-white/10 px-0 py-2 outline-none focus:border-[var(--primary)] transition-all font-medium text-sm placeholder:opacity-20 placeholder:text-white"
+                                                className="w-full bg-transparent border-b border-white/10 px-0 py-3 outline-none focus:border-[var(--primary)] transition-all font-medium text-base placeholder:opacity-20 placeholder:text-white"
                                                 required
                                             />
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-30">Electronic Mail</label>
+                                            <label className="text-[10px] font-bold uppercase tracking-widest text-white opacity-40">Email Address</label>
                                             <input
                                                 type="email"
                                                 name="email"
                                                 value={form.email}
                                                 onChange={handleChange}
                                                 placeholder="username@domain.com"
-                                                className="w-full bg-transparent border-b border-white/10 px-0 py-2 outline-none focus:border-[var(--primary)] transition-all font-medium text-sm placeholder:opacity-20 placeholder:text-white"
+                                                className="w-full bg-transparent border-b border-white/10 px-0 py-3 outline-none focus:border-[var(--primary)] transition-all font-medium text-base placeholder:opacity-20 placeholder:text-white"
                                                 required
                                             />
                                         </div>
                                     </div>
 
-                                    <div className="space-y-4">
-                                        <label className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-30">Context Classification</label>
-                                        <div className="flex flex-wrap gap-2 pt-1">
+                                    <div className="space-y-5">
+                                        <label className="text-[10px] font-bold uppercase tracking-widest text-white opacity-40">Reason for Inquiry</label>
+                                        <div className="flex flex-wrap gap-3 pt-1">
                                             {['Medical', 'Logistics', 'Protocol', 'Technical'].map(type => (
                                                 <button
                                                     key={type}
                                                     type="button"
                                                     onClick={() => setForm({ ...form, subject: type })}
-                                                    className={`px-5 py-2 rounded-full border text-[8px] font-bold uppercase tracking-widest transition-all ${form.subject === type ? 'bg-[var(--primary)] border-[var(--primary)] text-white' : 'border-white/5 text-white/30 hover:border-white/20'}`}
+                                                    className={`px-6 py-2.5 rounded-full border text-[10px] font-bold uppercase tracking-widest transition-all ${form.subject === type ? 'bg-[var(--primary)] border-[var(--primary)] text-white shadow-lg shadow-[var(--primary)]/20' : 'border-white/10 text-white/30 hover:border-white/30'}`}
                                                 >
                                                     {type}
                                                 </button>
@@ -160,24 +154,27 @@ const Contact = () => {
                                     </div>
 
                                     <div className="space-y-4">
-                                        <label className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-30">Detailed Mensage</label>
+                                        <label className="text-[10px] font-bold uppercase tracking-widest text-white opacity-40">Message</label>
                                         <textarea
                                             name="message"
-                                            rows="2"
+                                            rows="3"
                                             value={form.message}
                                             onChange={handleChange}
                                             placeholder="Provide technical details regarding your inquiry..."
-                                            className="w-full bg-transparent border-b border-white/10 px-0 py-2 outline-none focus:border-[var(--primary)] transition-all font-medium text-sm resize-none placeholder:opacity-20 placeholder:text-white"
+                                            className="w-full bg-transparent border-b border-white/10 px-0 py-3 outline-none focus:border-[var(--primary)] transition-all font-medium text-base resize-none placeholder:opacity-20 placeholder:text-white"
                                             required
                                         ></textarea>
                                     </div>
 
                                     <Button
                                         type="submit"
-                                        className="w-full py-5 text-xs font-bold uppercase tracking-[0.2em] group shadow-2xl bg-[var(--primary)] hover:bg-[var(--primary)]/90"
+                                        className="w-full py-6 text-[11px] font-bold uppercase tracking-widest group shadow-[0_20px_40px_-10px_rgba(166,123,91,0.3)] bg-[var(--primary)] hover:bg-[var(--primary-hover)] border-0"
                                         disabled={isSubmitting}
                                     >
-                                        {isSubmitting ? "Processing..." : "Authorize Transmission"} <Send size={14} className="ml-3 opacity-50" />
+                                        <div className="flex items-center justify-center gap-3">
+                                            {isSubmitting ? "Processing..." : "Authorize Transmission"}
+                                            <Send size={14} className="opacity-60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                        </div>
                                     </Button>
                                 </form>
                             </div>

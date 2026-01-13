@@ -11,37 +11,39 @@ const ComparisonTable = () => {
     ];
 
     return (
-        <section className="bg-[var(--surface)] py-20 md:py-24">
+        <section className="bg-[var(--background)] py-32 md:py-48">
             <div className="container-wide">
-                <div className="text-center mb-12 md:mb-16">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-4 block">Clinical Differentiation</span>
-                    <h2 className="text-2xl md:text-3xl font-bold mb-6 leading-tight uppercase tracking-tight">Efficacy over generic <br /><span className="italic font-light opacity-50">solutions.</span></h2>
+                <div className="text-center mb-20 md:mb-32">
+                    <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-tight uppercase tracking-tight text-[var(--text-dark)]">
+                        Efficacy over generic <br /><span className="text-[var(--primary)] italic font-light lowercase">solutions.</span>
+                    </h2>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] opacity-40">Systemic Comparison Matrix</p>
                 </div>
 
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-5xl mx-auto">
                     {/* Desktop Table View */}
-                    <div className="hidden lg:block bg-white rounded-3xl overflow-hidden shadow-xl border border-black/5">
+                    <div className="hidden lg:block bg-white rounded-[3rem] overflow-hidden shadow-2xl border border-[var(--primary)]/5">
                         <table className="w-full border-collapse">
                             <thead>
-                                <tr className="bg-white border-b border-black/5">
-                                    <th className="p-8 text-left text-[9px] font-bold uppercase tracking-[0.2em] opacity-30 w-1/3">Diagnostic Attribute</th>
-                                    <th className="p-8 text-left bg-[var(--primary)] text-white w-1/3">
-                                        <div className="flex items-center gap-2">
-                                            <BadgeCheck size={16} />
-                                            <span className="text-sm font-bold uppercase tracking-widest">Man Labs</span>
+                                <tr className="bg-white border-b border-[var(--primary)]/5">
+                                    <th className="p-10 text-left text-[10px] font-bold uppercase tracking-[0.3em] opacity-30 w-1/3 text-[var(--text-dark)]">Diagnostic Attribute</th>
+                                    <th className="p-10 text-left bg-[var(--primary)] text-white w-1/3">
+                                        <div className="flex items-center gap-3">
+                                            <BadgeCheck size={20} strokeWidth={1.5} />
+                                            <span className="text-base font-bold uppercase tracking-widest">Man Labs</span>
                                         </div>
                                     </th>
-                                    <th className="p-8 text-left opacity-30 w-1/3 text-[9px] font-bold uppercase tracking-[0.2em]">Standard Telehealth</th>
+                                    <th className="p-10 text-left opacity-30 w-1/3 text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-dark)]">Standard Telehealth</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {rows.map((row, i) => (
-                                    <tr key={i} className="border-b border-black/5 group hover:bg-[var(--surface)] transition-colors">
-                                        <td className="p-6 text-[11px] font-bold uppercase tracking-tight opacity-40 pl-8 align-middle">{row.label}</td>
-                                        <td className="p-6 text-sm font-bold bg-[var(--primary)]/5 align-middle text-[var(--text-dark)] leading-relaxed">
-                                            {row.ml}
+                                    <tr key={i} className="border-b border-[var(--primary)]/5 group hover:bg-[var(--background)]/50 transition-colors">
+                                        <td className="p-8 text-[11px] font-bold uppercase tracking-tight opacity-40 pl-10 align-middle text-[var(--text-dark)]">{row.label}</td>
+                                        <td className="p-8 text-base font-bold bg-[var(--primary)]/5 align-middle text-[var(--text-dark)] leading-relaxed uppercase tracking-tight">
+                                            "{row.ml}"
                                         </td>
-                                        <td className="p-6 text-xs opacity-30 align-middle leading-relaxed font-medium">
+                                        <td className="p-8 text-sm opacity-30 align-middle leading-relaxed font-medium text-[var(--text-dark)] italic">
                                             {row.other}
                                         </td>
                                     </tr>
@@ -51,27 +53,27 @@ const ComparisonTable = () => {
                     </div>
 
                     {/* Mobile Comparison View */}
-                    <div className="lg:hidden space-y-4">
+                    <div className="lg:hidden space-y-6">
                         {rows.map((row, i) => (
-                            <div key={i} className="bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
-                                <h4 className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-30 mb-5">{row.label}</h4>
-                                <div className="space-y-3">
-                                    <div className="p-5 bg-[var(--primary)] text-white rounded-xl relative overflow-hidden">
+                            <div key={i} className="bg-white rounded-[2rem] p-8 border border-[var(--primary)]/5 shadow-xl">
+                                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-30 mb-8 text-[var(--text-dark)]">{row.label}</h4>
+                                <div className="space-y-4">
+                                    <div className="p-6 bg-[var(--primary)] text-white rounded-[1.5rem] relative overflow-hidden shadow-lg shadow-[var(--primary)]/20">
                                         <div className="relative z-10">
-                                            <div className="flex items-center gap-2 mb-2 opacity-50">
-                                                <BadgeCheck size={14} />
-                                                <span className="text-[8px] font-bold uppercase tracking-widest">Man Labs Profile</span>
+                                            <div className="flex items-center gap-2 mb-3 opacity-60">
+                                                <BadgeCheck size={16} />
+                                                <span className="text-[9px] font-bold uppercase tracking-widest">Man Labs Protocol</span>
                                             </div>
-                                            <p className="text-sm font-bold leading-snug text-white">{row.ml}</p>
+                                            <p className="text-base font-bold leading-tight uppercase text-white">{row.ml}</p>
                                         </div>
                                     </div>
 
-                                    <div className="p-5 bg-[var(--surface)] rounded-xl border border-black/5">
-                                        <div className="flex items-center gap-2 mb-2 opacity-20">
-                                            <X size={14} />
-                                            <span className="text-[8px] font-bold uppercase tracking-widest">Other Providers</span>
+                                    <div className="p-6 bg-[var(--background)] rounded-[1.5rem] border border-[var(--primary)]/5">
+                                        <div className="flex items-center gap-2 mb-3 opacity-30 text-[var(--text-dark)]">
+                                            <X size={16} />
+                                            <span className="text-[9px] font-bold uppercase tracking-widest">Generic Providers</span>
                                         </div>
-                                        <p className="text-xs font-medium opacity-40 leading-relaxed">{row.other}</p>
+                                        <p className="text-sm font-medium opacity-50 leading-relaxed text-[var(--text-dark)] italic">"{row.other}"</p>
                                     </div>
                                 </div>
                             </div>

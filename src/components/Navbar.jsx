@@ -24,9 +24,9 @@ const Navbar = () => {
 
 
     return (
-        <nav className={`glass-nav flex items-center transition-all duration-300 ${isScrolled ? 'h-12 md:h-14' : 'h-14 md:h-18'}`}>
-            <div className="container-wide flex justify-between items-center w-full">
-                <Link to="/" className="flex items-center gap-3">
+        <nav className={`glass-nav flex items-center transition-all duration-500 z-[1000] ${isScrolled ? 'h-14 md:h-16 bg-[var(--background)]/80 backdrop-blur-md border-b border-[var(--primary)]/5' : 'h-20 md:h-28'}`}>
+            <div className="container-wide flex justify-between items-center w-full px-6 md:px-12">
+                <Link to="/" className="flex items-center gap-3 transition-transform hover:scale-105">
                     <AnimatePresence mode="wait">
                         {isScrolled ? (
                             <motion.img
@@ -36,7 +36,7 @@ const Navbar = () => {
                                 exit={{ opacity: 0 }}
                                 src="/logo.png"
                                 alt="Man Labs"
-                                className="h-5 md:h-6 w-auto grayscale"
+                                className="h-10 md:h-13 w-auto grayscale"
                             />
                         ) : (
                             <motion.img
@@ -46,37 +46,38 @@ const Navbar = () => {
                                 exit={{ opacity: 0 }}
                                 src="/logo_full.png"
                                 alt="Man Labs"
-                                className="h-4 md:h-6 w-auto"
+                                className="h-11 md:h-16 w-auto"
                             />
                         )}
                     </AnimatePresence>
                 </Link>
 
                 {/* Desktop Links */}
-                <div className="hidden lg:flex items-center gap-8">
+                <div className="hidden lg:flex items-center gap-12">
                     {links.map((link) => (
                         <Link
                             key={link.name}
                             to={link.path}
-                            className={`text-[9px] uppercase font-bold tracking-[0.2em] transition-all hover:opacity-100 ${location.pathname === link.path ? 'text-[var(--primary)] opacity-100' : 'text-black opacity-30'}`}
+                            className={`text-[10px] uppercase font-bold tracking-[0.3em] transition-all hover:text-[var(--primary)] relative group ${location.pathname === link.path ? 'text-[var(--primary)]' : 'text-[var(--text-dark)] opacity-40 hover:opacity-100'}`}
                         >
                             {link.name}
+                            <span className={`absolute -bottom-2 left-0 w-full h-[1px] bg-[var(--primary)] transition-transform duration-500 scale-x-0 group-hover:scale-x-100 ${location.pathname === link.path ? 'scale-x-100' : ''}`} />
                         </Link>
                     ))}
                 </div>
 
-                <div className="hidden lg:flex items-center gap-4">
-                    <Link to="/login" className="text-[9px] uppercase font-bold tracking-[0.2em] text-black opacity-30 hover:opacity-100 transition-all pr-4 border-r border-black/5">
+                <div className="hidden lg:flex items-center gap-8">
+                    <Link to="/login" className="text-[10px] uppercase font-bold tracking-[0.3em] text-[var(--text-dark)] opacity-30 hover:opacity-100 transition-all">
                         Authenticate
                     </Link>
                     <Link to="/assessment">
-                        <Button className="h-[36px] px-6 text-[9px] font-bold uppercase tracking-widest bg-[var(--primary)] text-white shadow-lg shadow-[var(--primary)]/10">Start Protocol</Button>
+                        <Button className="h-[42px] px-8 text-[10px] font-bold uppercase tracking-[0.2em] bg-[var(--primary)] text-white shadow-xl shadow-[var(--primary)]/20 hover:bg-[var(--primary-hover)] border-0">Start Protocol</Button>
                     </Link>
                 </div>
 
                 {/* Mobile Toggle */}
-                <button className="lg:hidden text-black opacity-40 hover:opacity-100 transition-opacity" onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <X size={20} /> : <Menu size={20} />}
+                <button className="lg:hidden text-[var(--text-dark)] opacity-50 hover:opacity-100 transition-opacity" onClick={() => setIsOpen(!isOpen)}>
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
@@ -84,33 +85,37 @@ const Navbar = () => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 20 }}
-                        className="fixed top-0 right-0 w-64 h-screen bg-white shadow-2xl lg:hidden z-[999] overflow-y-auto border-l border-black/5"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="fixed inset-0 h-screen bg-white/95 backdrop-blur-3xl lg:hidden z-[999] overflow-y-auto"
                     >
-                        <div className="p-8 flex flex-col gap-6 pt-24">
-                            <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 text-black opacity-20">
-                                <X size={20} />
+                        <div className="min-h-screen flex flex-col items-center justify-center p-12 text-center gap-10">
+                            <button onClick={() => setIsOpen(false)} className="absolute top-8 right-8 text-[var(--text-dark)] opacity-30">
+                                <X size={32} strokeWidth={1} />
                             </button>
+
+                            <img src="/logo.png" alt="Man Labs" className="h-20 w-auto mb-12 brightness-0 opacity-40" />
+
                             {links.map((link) => (
                                 <Link
                                     key={link.name}
                                     to={link.path}
-                                    className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-40 hover:opacity-100 transition-opacity"
+                                    className="text-lg uppercase font-bold tracking-[0.4em] text-[var(--text-dark)] opacity-40 hover:opacity-100 transition-all hover:scale-110"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.name}
                                 </Link>
                             ))}
-                            <div className="pt-6 border-t border-black/5 mt-4">
-                                <Link to="/assessment" onClick={() => setIsOpen(false)}>
-                                    <Button className="w-full text-[9px] font-bold uppercase tracking-widest h-11">Start Protocol</Button>
-                                </Link>
-                                <Link to="/login" className="block text-center mt-6 text-[9px] font-bold uppercase tracking-widest opacity-20" onClick={() => setIsOpen(false)}>
-                                    Authentication
-                                </Link>
-                            </div>
+
+                            <div className="w-full max-w-xs h-[1px] bg-[var(--primary)]/10 my-6" />
+
+                            <Link to="/assessment" className="w-full max-w-xs" onClick={() => setIsOpen(false)}>
+                                <Button className="w-full text-[11px] font-bold uppercase tracking-[0.3em] h-14 bg-[var(--primary)] text-white shadow-2xl shadow-[var(--primary)]/20">Start Protocol</Button>
+                            </Link>
+                            <Link to="/login" className="text-[11px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] opacity-60" onClick={() => setIsOpen(false)}>
+                                Authentication
+                            </Link>
                         </div>
                     </motion.div>
                 )}
