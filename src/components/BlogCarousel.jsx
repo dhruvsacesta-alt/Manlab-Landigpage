@@ -1,79 +1,64 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { blogs } from '../data/blogs';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const BlogCarousel = () => {
-    // Duplicate blogs for infinite scroll feel
+    // Duplicate for seamless scroll
     const displayBlogs = [...blogs, ...blogs];
 
     return (
-        <section className="py-24 bg-white overflow-hidden">
-            <div className="container-wide mb-16">
+        <section className="py-20 md:py-24 bg-white overflow-hidden">
+            <div className="container-wide mb-12 md:mb-16">
                 <div className="flex flex-col md:flex-row md:items-end justify-between w-full">
                     <div>
-                        <span className="text-xs font-black uppercase tracking-widest text-[var(--accent)] mb-4 block">Expert Insights</span>
-                        <h2 className="text-3xl md:text-5xl font-black">Medical Journal.</h2>
+                        <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-4 block text-center md:text-left">Knowledge Exchange</span>
+                        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-center md:text-left leading-tight">Digital <br /><span className="italic font-light opacity-50">Journal.</span></h2>
                     </div>
-                    <Link to="/blogs" className="text-[var(--primary)] font-bold text-xs uppercase tracking-widest hover:mr-2 transition-all mt-6 md:mt-0">
-                        View All Entries →
+                    <Link to="/blogs" className="text-[var(--primary)]/60 font-bold text-[9px] uppercase tracking-[0.2em] hover:text-[var(--primary)] transition-all mt-6 md:mt-0 text-center md:text-left">
+                        Review Archive —
                     </Link>
                 </div>
             </div>
 
-            <div className="relative mt-16">
-
-                <motion.div
-                    className="flex gap-6 md:gap-8 px-4"
-                    whileHover={{ x: 0, transition: { duration: 0 } }}
-                    animate={{ x: [-2000, 0] }}
-                    transition={{
-                        duration: 40,
-                        repeat: Infinity,
-                        ease: "linear"
-                    }}
-
-                    style={{ width: "fit-content" }}
-                >
+            {/* Marquee Container with pause-on-hover logic */}
+            <div className="relative mt-12 pause-on-hover">
+                <div className="flex gap-6 sm:gap-8 px-4 animate-marquee w-max">
                     {displayBlogs.map((post, i) => (
-                        <Link
-                            key={i}
-                            to={`/blogs/${post.id}`}
-                            className="w-[85vw] sm:w-[400px] shrink-0 premium-card !p-0 overflow-hidden group hover:border-[var(--primary)] hover:translate-y-2 transition-all"
+                        <article
+                            key={`${post.id}-${i}`}
+                            className="w-[85vw] sm:w-[440px] shrink-0 group cursor-pointer"
                         >
-
-
-
-                            <div className="aspect-[16/10] overflow-hidden">
-                                <img
-                                    src={post.img}
-                                    alt={post.title}
-                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                                />
-                            </div>
-
-                            <div className="p-8">
-                                <span className="text-[10px] font-black uppercase tracking-widest text-[var(--primary)] mb-4 block">
-                                    {post.category}
-                                </span>
-                                <h3 className="text-xl font-bold font-heading mb-4 line-clamp-2 leading-tight group-hover:text-[var(--primary)] transition-colors">
-                                    {post.title}
-                                </h3>
-                                <p className="text-sm opacity-50 line-clamp-2 italic mb-8">
-                                    "{post.subtitle}"
-                                </p>
-                                <div className="flex items-center gap-2 text-[var(--primary)] font-bold text-xs uppercase tracking-widest">
-                                    Read More <ArrowUpRight size={14} />
+                            <Link to={`/blogs/${post.id}`}>
+                                <div className="aspect-[16/10] rounded-3xl overflow-hidden mb-6 relative shadow-xl border border-black/5 bg-[var(--surface)]">
+                                    <img
+                                        src={post.img}
+                                        alt={`Cover for: ${post.title}`}
+                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                    />
+                                    <div className="absolute top-5 left-5 px-3 py-1.5 bg-black/10 backdrop-blur-xl rounded-full text-[8px] font-bold uppercase text-white tracking-[0.2em] border border-white/10">
+                                        {post.category}
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
+                                <div className="px-1">
+                                    <h3 className="text-lg md:text-xl font-bold mb-3 tracking-tight group-hover:text-[var(--primary)] transition-colors line-clamp-2 leading-tight uppercase font-heading">
+                                        {post.title}
+                                    </h3>
+                                    <p className="opacity-40 text-xs leading-relaxed mb-6 line-clamp-2 font-medium italic">
+                                        "{post.subtitle}"
+                                    </p>
+                                    <div className="flex items-center gap-2 text-[var(--primary)] font-bold text-[9px] uppercase tracking-widest group-hover:gap-3 transition-all">
+                                        Analysis Report <ArrowRight size={12} />
+                                    </div>
+                                </div>
+                            </Link>
+                        </article>
                     ))}
-                </motion.div>
+                </div>
 
-                {/* Faded edges */}
-                <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
-                <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
+                {/* Smooth Fade Overlays */}
+                <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
             </div>
         </section>
     );

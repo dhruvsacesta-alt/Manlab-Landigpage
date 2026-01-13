@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /assessment/results
+Disallow: /login
+Disallow: /signup
+
+Sitemap: https://manlabs.com/sitemap.xml

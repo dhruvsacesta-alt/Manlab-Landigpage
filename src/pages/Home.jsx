@@ -7,8 +7,7 @@ import ScienceSection from '../components/ScienceSection';
 import Diagnostics from '../components/Diagnostics';
 import BlogCarousel from '../components/BlogCarousel';
 import FAQ from '../components/FAQ';
-
-
+import SEO from '../components/SEO';
 
 const Home = () => {
     useEffect(() => {
@@ -17,6 +16,10 @@ const Home = () => {
 
     return (
         <div className="overflow-x-hidden">
+            <SEO
+                title="Personalized Hair Loss Solutions"
+                description="India's premier digital health clinic for men. Get doctor-approved, science-backed plans to stop hair loss and regrowth hair from home."
+            />
             <Hero />
             <JourneySteps />
             <ComparisonTable />
@@ -25,7 +28,6 @@ const Home = () => {
             <Diagnostics />
             <BlogCarousel />
             <FAQ />
-
         </div>
     );
 };

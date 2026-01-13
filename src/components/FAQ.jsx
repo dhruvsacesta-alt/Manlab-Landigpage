@@ -6,14 +6,14 @@ const FAQItem = ({ question, answer }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="border-b border-[var(--border)] py-8 last:border-none">
+        <div className="border-b border-black/5 py-4 last:border-none">
             <button
-                className="w-full flex justify-between items-center text-left gap-8 group"
+                className="w-full flex justify-between items-center text-left gap-8 group py-4"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <h3 className="text-xl md:text-2xl font-bold font-heading transition-colors group-hover:text-[var(--primary)]">{question}</h3>
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center border border-[var(--border)] transition-all ${isOpen ? 'bg-[var(--primary)] text-white border-[var(--primary)] scale-90' : 'bg-white'}`}>
-                    {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                <h3 className="text-sm md:text-base font-bold uppercase tracking-tight transition-colors group-hover:text-[var(--primary)]">{question}</h3>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center border border-black/5 transition-all ${isOpen ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-white'}`}>
+                    {isOpen ? <Minus size={14} /> : <Plus size={14} />}
                 </div>
             </button>
             <AnimatePresence>
@@ -25,8 +25,8 @@ const FAQItem = ({ question, answer }) => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                     >
-                        <p className="pt-6 text-lg opacity-60 leading-relaxed max-w-4xl">
-                            {answer}
+                        <p className="pb-6 pt-2 text-xs md:text-sm opacity-40 leading-relaxed max-w-2xl font-medium italic">
+                            "{answer}"
                         </p>
                     </motion.div>
                 )}
@@ -56,15 +56,29 @@ const FAQ = () => {
     ];
 
     return (
-        <section className="bg-white">
+        <section className="bg-white py-20 md:py-24">
+            {/* JSON-LD for FAQ Schema */}
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": faqs.map(faq => ({
+                        "@type": "Question",
+                        "name": faq.question,
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": faq.answer
+                        }
+                    }))
+                })}
+            </script>
             <div className="container-wide">
-                <div className="text-center mb-24">
-                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[var(--accent)] mb-6 block">Common Questions</span>
-                    <h2 className="text-4xl md:text-6xl font-black">Curiosity is <br /><span className="text-[var(--primary)]">Scientific.</span></h2>
-
+                <div className="text-center mb-16 md:mb-20">
+                    <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-6 block leading-none">Inquiry Hub</span>
+                    <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight">Technical <br /><span className="italic font-light opacity-50">Clarification.</span></h2>
                 </div>
 
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-3xl mx-auto px-4">
                     {faqs.map((faq, i) => (
                         <FAQItem key={i} {...faq} />
                     ))}

@@ -28,61 +28,60 @@ const ScienceSection = () => {
     ];
 
     return (
-        <section className="py-24">
+        <section className="py-20 md:py-24">
             <div className="container-wide">
-                <div className="bg-[var(--text-dark)] rounded-[40px] md:rounded-[60px] p-8 md:p-24 text-white overflow-hidden relative">
+                <div className="bg-[var(--text-dark)] rounded-[32px] md:rounded-[48px] p-8 md:p-20 text-white overflow-hidden relative border border-white/5">
                     {/* Decorative background circle and image */}
-                    <div className="absolute -top-40 -right-40 w-96 h-96 bg-[var(--primary)] rounded-full blur-[100px] opacity-20"></div>
-                    <div className="absolute top-0 right-0 h-full w-1/3 opacity-10 pointer-events-none hidden lg:block">
-                        <img src={sciBg} alt="Scalp Analysis" className="h-full w-full object-cover" />
-                    </div>
+                    <div className="absolute -top-40 -right-40 w-96 h-96 bg-[var(--primary)] rounded-full blur-[100px] opacity-10"></div>
 
                     <div className="relative z-10">
-                        <div className="max-w-3xl mb-16">
-                            <h2 className="text-4xl md:text-6xl font-black mb-6 md:mb-8 leading-tight">
-                                Hair loss isn’t random.
+                        <div className="max-w-2xl mb-16">
+                            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] mb-4 block">Endocrine Mechanism</span>
+                            <h2 className="text-2xl md:text-3xl font-bold mb-6 leading-tight uppercase tracking-tight text-white">
+                                Cellular targeting <br /><span className="italic font-light opacity-50">Precision medicine.</span>
                             </h2>
-                            <p className="text-xl text-white/70 leading-relaxed font-light">
-                                For many people, it’s driven by <span className="text-[var(--accent)] font-bold">DHT</span>, a hormone that slowly weakens hair follicles.
-                                We don’t just treat the symptom; we target the root cause.
+                            <p className="text-base md:text-lg text-white/50 leading-relaxed font-medium">
+                                We utilize a multi-modal approach to inhibit <span className="text-white font-bold italic">DHT</span> pathways while simultaneously optimizing follicular metabolic health.
                             </p>
                         </div>
 
-                        <div className="grid lg:grid-cols-2 gap-16 items-start">
-                            <div>
-                                <h3 className="text-2xl font-bold mb-6 text-white/90">How our treatment helps</h3>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                    {treatments.map((t, i) => (
-                                        <div key={i} className="p-6 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/15 transition-colors group">
-                                            <div className="w-10 h-10 rounded-xl bg-[var(--primary)]/20 text-[var(--primary)] flex items-center justify-center mb-4 group-hover:bg-[var(--primary)] group-hover:text-white transition-all duration-500">
-                                                {React.cloneElement(t.icon, { size: 20 })}
+                        <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-start">
+                            <div className="space-y-10">
+                                <div>
+                                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] mb-6 text-white/30">Pharmacological Standards</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        {treatments.map((t, i) => (
+                                            <div key={i} className="p-5 bg-white/[0.03] rounded-2xl border border-white/5 hover:bg-white/[0.06] transition-all group">
+                                                <div className="w-8 h-8 rounded-xl bg-white/5 text-[var(--primary)] flex items-center justify-center mb-4 transition-all duration-500 group-hover:scale-110">
+                                                    {React.cloneElement(t.icon, { size: 16, strokeWidth: 1.5 })}
+                                                </div>
+                                                <h4 className="text-sm font-bold mb-2 text-white uppercase tracking-tight">{t.title}</h4>
+                                                <p className="text-[11px] text-white/40 leading-relaxed font-normal">{t.desc}</p>
                                             </div>
-                                            <h4 className="font-bold mb-2 text-white">{t.title}</h4>
-                                            <p className="text-sm text-white/70 leading-relaxed font-normal">{t.desc}</p>
-                                        </div>
-                                    ))}
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="bg-white/5 p-10 rounded-[40px] border border-white/10">
-                                <h3 className="text-2xl font-bold mb-6 text-white/90">How your plan works</h3>
+                            <div className="bg-white/[0.02] p-8 md:p-10 rounded-3xl border border-white/5 mt-auto">
+                                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] mb-8 text-white/30">Phased Recovery Framework</h3>
                                 <ul className="space-y-6">
                                     {[
-                                        "Address the cause of hair loss",
-                                        "Support regrowth where possible",
-                                        "Prevent further progression",
-                                        "Adjust over time with follow-ups"
+                                        "DHT Inhibition (Pathway Blocking)",
+                                        "Follicular Stimulation (Regrowth phase)",
+                                        "Structural Density Preservation",
+                                        "Adaptive Protocol Adjustments"
                                     ].map((item, idx) => (
-                                        <li key={idx} className="flex items-center gap-4 text-lg">
-                                            <div className="w-8 h-8 rounded-full bg-[var(--accent)] text-[var(--text-dark)] flex items-center justify-center font-bold text-sm shrink-0">
+                                        <li key={idx} className="flex items-center gap-4 text-base">
+                                            <div className="w-6 h-6 rounded-full bg-white/5 text-white/30 flex items-center justify-center font-bold text-[9px] shrink-0 border border-white/5">
                                                 {idx + 1}
                                             </div>
-                                            <span className="text-white/80 font-medium">{item}</span>
+                                            <span className="text-white/60 text-sm font-medium">{item}</span>
                                         </li>
                                     ))}
                                 </ul>
-                                <div className="mt-10 pt-10 border-t border-white/10 text-center">
-                                    <p className="text-sm text-white/40 uppercase tracking-widest font-bold">Approved by Medical Board</p>
+                                <div className="mt-12 pt-10 border-t border-white/5 text-center">
+                                    <p className="text-[8px] text-white/20 uppercase tracking-[0.3em] font-bold">physician approved • pharmacological grade</p>
                                 </div>
                             </div>
                         </div>

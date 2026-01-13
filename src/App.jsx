@@ -11,7 +11,8 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Contact from './pages/Contact';
 import Assessment from './pages/Assessment';
-import ScrollToTop from './components/ScrollToTop'; // Assuming ScrollToTop is a new component to be imported
+import AssessmentResults from './pages/AssessmentResults';
+import ScrollToTop from './components/ScrollToTop';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/solutions" element={<ComingSoon />} />
           <Route path="/hair-loss" element={<ComingSoon />} />
           <Route path="/assessment" element={<Assessment />} />
+          <Route path="/assessment/results" element={<AssessmentResults />} />
           <Route path="/how-it-works" element={<ComingSoon />} />
 
           <Route path="/clinical-trials" element={<ComingSoon />} />

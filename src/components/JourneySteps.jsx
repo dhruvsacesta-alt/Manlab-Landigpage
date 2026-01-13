@@ -32,22 +32,19 @@ const JourneySteps = () => {
     ];
 
     return (
-        <section className="bg-white py-24">
+        <section className="bg-white py-20">
             <div className="container-wide">
-                <div className="max-w-3xl mb-24">
-                    <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
-                        Hair loss, <br />
-                        <span className="text-[var(--primary)]">decoded.</span>
+                <div className="max-w-2xl mb-20">
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight uppercase tracking-tight">
+                        Hair analysis, <br />
+                        <span className="text-[var(--primary)] italic font-light">Precision Protocol.</span>
                     </h2>
-                    <p className="text-xl opacity-70">
-                        We don’t sell miracle cures. We follow a strict medical protocol to identify and treat the root cause.
+                    <p className="text-base md:text-lg opacity-50 font-medium">
+                        A rigorous clinical framework designed to identify and address the biological root causes of thinning.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 relative">
-                    {/* Connector Line */}
-                    <div className="hidden md:block absolute top-12 left-0 w-full h-px bg-[var(--surface)] z-0"></div>
-
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 md:gap-10">
                     {steps.map((step, idx) => (
                         <motion.div
                             key={idx}
@@ -55,15 +52,15 @@ const JourneySteps = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="relative z-10 group"
+                            className="group"
                         >
-                            <div className="w-24 h-24 rounded-3xl bg-[var(--surface)] flex items-center justify-center text-[var(--primary)] mb-8 transition-all duration-500 group-hover:bg-[var(--primary)] group-hover:text-white group-hover:shadow-2xl group-hover:shadow-[var(--primary)]/30 group-hover:-translate-y-2">
-                                {React.cloneElement(step.icon, { size: 32 })}
+                            <div className="w-16 h-16 rounded-2xl bg-[var(--surface)] flex items-center justify-center text-[var(--primary)] mb-6 transition-all duration-500 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-black/5 group-hover:-translate-y-1 border border-transparent group-hover:border-black/5">
+                                {React.cloneElement(step.icon, { size: 24, strokeWidth: 1.5 })}
                             </div>
-                            <div className="px-2">
-                                <p className="text-[10px] font-black uppercase tracking-widest text-[var(--accent)] mb-4">Step 0{idx + 1}</p>
-                                <h3 className="text-xl font-bold mb-4 font-heading">{step.title}</h3>
-                                <p className="text-sm italic leading-relaxed opacity-60">{step.desc}</p>
+                            <div className="px-1">
+                                <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[var(--primary)]/30 mb-3">Protocol 0{idx + 1}</p>
+                                <h3 className="text-sm font-bold mb-3 uppercase tracking-tight leading-snug">{step.title}</h3>
+                                <p className="text-xs leading-relaxed opacity-40 font-medium">{step.desc}</p>
                             </div>
                         </motion.div>
                     ))}
