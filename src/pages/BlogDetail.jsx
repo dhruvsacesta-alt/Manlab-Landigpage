@@ -103,7 +103,7 @@ const BlogDetail = () => {
                                     <>Reading: {post.title}</>
                                 )}
                             </div>
-                            <Link to="/assessment" className="shrink-0">
+                            <Link to="/assessment" className="shrink-0 hidden sm:block">
                                 <button className="bg-[var(--primary)] text-white text-[10px] font-black uppercase tracking-widest px-5 md:px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-[var(--primary)]/20">
                                     Start Consult
                                 </button>

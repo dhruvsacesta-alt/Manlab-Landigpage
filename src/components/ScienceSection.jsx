@@ -39,7 +39,7 @@ const ScienceSection = () => {
 
                     <div className="relative z-10">
                         <div className="max-w-3xl mb-16">
-                            <h2 className="text-4xl md:text-6xl font-black mb-6 md:mb-8 leading-tight">
+                            <h2 className="text-4xl md:text-6xl font-black mb-6 md:mb-8 leading-tight text-white">
                                 Hair loss isn’t random.
                             </h2>
                             <p className="text-xl text-white/70 leading-relaxed font-light">
