@@ -177,7 +177,7 @@ const BlogDetail = () => {
                                             <span className="w-2 h-2 rounded-full bg-[var(--primary)] animate-pulse"></span>
                                             <span className="text-[10px] font-black uppercase tracking-widest opacity-80">Free Medical Assessment</span>
                                         </div>
-                                        <h3 className="text-4xl md:text-5xl font-black mb-6 leading-[1.1]">The future of <br /><span className="text-[var(--primary)]">hair recovery.</span></h3>
+                                        <h3 className="text-4xl md:text-5xl font-black mb-6 leading-[1.1] text-[var(--primary)]">The future of <br />hair recovery.</h3>
                                         <p className="text-lg text-white/60 mb-10 max-w-md mx-auto lg:mx-0 leading-relaxed font-light">
                                             No generic kits. No guesswork. Just science-backed medicine, monitored by experts.
                                         </p>
@@ -199,7 +199,7 @@ const BlogDetail = () => {
                                                     {React.cloneElement(item.icon, { size: 22 })}
                                                 </div>
                                                 <div>
-                                                    <h4 className="font-bold text-base mb-1">{item.title}</h4>
+                                                    <h4 className="font-bold text-base mb-1 text-white">{item.title}</h4>
                                                     <p className="text-xs text-white/40 leading-relaxed">{item.desc}</p>
                                                 </div>
                                             </div>
