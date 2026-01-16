@@ -12,6 +12,7 @@ import Signup from './pages/Signup';
 import Contact from './pages/Contact';
 import Assessment from './pages/Assessment';
 import AssessmentResults from './pages/AssessmentResults';
+import AssessmentConsent from './pages/AssessmentConsent';
 import ScrollToTop from './components/ScrollToTop';
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/solutions" element={<ComingSoon />} />
           <Route path="/hair-loss" element={<ComingSoon />} />
           <Route path="/assessment" element={<Assessment />} />
+          <Route path="/assessment/consent" element={<AssessmentConsent />} />
           <Route path="/assessment/results" element={<AssessmentResults />} />
           <Route path="/how-it-works" element={<ComingSoon />} />
 

@@ -11,7 +11,7 @@ import leftExample from '../assets/examples/left_temple.png';
 import rightExample from '../assets/examples/right_temple.png';
 import crownExample from '../assets/examples/crown.png';
 
-const StepWrapper = ({ title, subtitle, step, children, backStep, nextStep }) => (
+const StepWrapper = ({ title, subtitle, step, children, backStep, nextStep, error }) => (
     <motion.div
         key={`step-${step}`}
         initial={{ opacity: 0, y: 10 }}
@@ -36,16 +36,33 @@ const StepWrapper = ({ title, subtitle, step, children, backStep, nextStep }) =>
             {step > 0 ? (
                 <button
                     type="button"
-                    onClick={backStep}
+                    onClick={() => {
+                        backStep();
+                        setError('');
+                    }}
                     className="text-xs font-black uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
                 >
                     Back
                 </button>
             ) : <div />}
 
-            <Button onClick={nextStep} className="px-10 py-5 text-sm font-black">
-                {step === 11 ? 'Analyze Results' : 'Next'} <ChevronRight size={18} className="ml-1" />
-            </Button>
+            <div className="flex flex-col items-center gap-2">
+                <Button onClick={nextStep} className="px-10 py-5 text-sm font-black w-full sm:w-auto">
+                    {step === 11 ? 'Analyze Results' : 'Next'} <ChevronRight size={18} className="ml-1" />
+                </Button>
+                <AnimatePresence>
+                    {error && (
+                        <motion.p
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 5 }}
+                            className="text-[10px] font-bold text-red-500 uppercase tracking-widest text-center mt-2"
+                        >
+                            {error}
+                        </motion.p>
+                    )}
+                </AnimatePresence>
+            </div>
         </div>
     </motion.div>
 );
@@ -53,7 +70,11 @@ const StepWrapper = ({ title, subtitle, step, children, backStep, nextStep }) =>
 const Assessment = () => {
     const navigate = useNavigate();
     const [step, setStep] = useState(0);
-    const [answers, setAnswers] = useState({});
+    const [answers, setAnswers] = useState(() => {
+        const saved = localStorage.getItem('manlab_assessment');
+        return saved ? JSON.parse(saved) : {};
+    });
+    const [error, setError] = useState('');
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -62,12 +83,45 @@ const Assessment = () => {
     const handleAnswer = (key, value) => {
         const updatedAnswers = { ...answers, [key]: value };
         setAnswers(updatedAnswers);
+        setError(''); // Clear error when user makes a selection
         localStorage.setItem('manlab_assessment', JSON.stringify(updatedAnswers));
     };
 
     const nextStep = () => {
+        // Validation for each step
+        const isStepValid = () => {
+            if (step === 0) return true; // Intro step
+            if (step === 1) return answers.age && answers.age >= 18;
+            if (step === 2) return answers.duration;
+            if (step === 3) return answers.pattern && answers.pattern.length > 0;
+            if (step === 4) return answers.hairline;
+            if (step === 5) return answers.shedding;
+            if (step === 6) return answers.triggers && answers.triggers.length > 0;
+            if (step === 7) return answers.scalp && answers.scalp.length > 0;
+            if (step === 8) return answers.family && answers.family.length > 0;
+            if (step === 9) return answers.treatments && answers.treatments.length > 0;
+            if (step === 10) return answers.description;
+            if (step === 11) {
+                // Check if all photos are uploaded (simulation)
+                return [0, 1, 2, 3, 4].every(i => answers[`photo_${i}`]);
+            }
+            return false;
+        };
+
+        if (!isStepValid()) {
+            setError('Please complete this step to proceed.');
+            return;
+        }
+
         if (step === 11) {
-            navigate('/assessment/results');
+            const user = localStorage.getItem('manlab_user');
+            if (user) {
+                navigate('/assessment/consent');
+            } else {
+                // Store that we want to go to consent after login
+                localStorage.setItem('redirect_after_login', '/assessment/consent');
+                navigate('/login');
+            }
         } else {
             setStep(prev => prev + 1);
         }
@@ -344,6 +398,7 @@ const Assessment = () => {
                         step={step}
                         backStep={backStep}
                         nextStep={nextStep}
+                        error={error}
                     >
                         {renderStepContent()}
                     </StepWrapper>

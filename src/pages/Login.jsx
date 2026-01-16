@@ -45,7 +45,18 @@ const Login = () => {
             // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 1500));
             console.log('Login successful:', { email, password });
-            // navigate('/dashboard'); 
+
+            // Store user session for frontend only flow
+            localStorage.setItem('manlab_user', JSON.stringify({ email, name: email.split('@')[0] }));
+
+            // Check for redirect
+            const redirectPath = localStorage.getItem('redirect_after_login');
+            if (redirectPath) {
+                localStorage.removeItem('redirect_after_login');
+                navigate(redirectPath);
+            } else {
+                navigate('/'); // Default to home
+            }
         } catch (error) {
             setErrors({ submit: 'Invalid email or password. Please try again.' });
         } finally {

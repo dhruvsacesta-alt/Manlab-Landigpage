@@ -74,7 +74,21 @@ const Signup = () => {
             // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 2000));
             console.log('Signup successful:', formData);
-            // navigate('/onboarding');
+
+            // Store user session for frontend only flow
+            localStorage.setItem('manlab_user', JSON.stringify({
+                email: formData.email,
+                name: formData.name
+            }));
+
+            // Check for redirect
+            const redirectPath = localStorage.getItem('redirect_after_login');
+            if (redirectPath) {
+                localStorage.removeItem('redirect_after_login');
+                navigate(redirectPath);
+            } else {
+                navigate('/'); // Default to home
+            }
         } catch (error) {
             setErrors({ submit: 'Something went wrong. Please try again later.' });
         } finally {

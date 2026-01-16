@@ -9,11 +9,32 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
 
+    const [currentUser, setCurrentUser] = useState(null);
+
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50);
+        const checkUser = () => {
+            const user = localStorage.getItem('manlab_user');
+            setCurrentUser(user ? JSON.parse(user) : null);
+        };
+
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        checkUser();
+
+        // Listen for storage changes (for same-page updates if any)
+        window.addEventListener('storage', checkUser);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('storage', checkUser);
+        };
     }, []);
+
+    const logout = () => {
+        localStorage.removeItem('manlab_user');
+        setCurrentUser(null);
+        window.location.href = '/';
+    };
 
     const links = [
         { name: 'How it works', path: '/' },
@@ -70,9 +91,16 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden lg:flex items-center gap-4">
-                    <Link to="/login">
-                        <Button variant="ghost">Log in</Button>
-                    </Link>
+                    {currentUser ? (
+                        <>
+                            <span className="text-xs font-black uppercase tracking-widest opacity-40">Hi, {currentUser.name}</span>
+                            <Button variant="ghost" onClick={logout}>Log out</Button>
+                        </>
+                    ) : (
+                        <Link to="/login">
+                            <Button variant="ghost">Log in</Button>
+                        </Link>
+                    )}
                     <Link to="/assessment">
                         <Button>Start Assessment</Button>
                     </Link>
@@ -105,9 +133,16 @@ const Navbar = () => {
                                 </Link>
                             ))}
                             <hr />
-                            <Link to="/login" onClick={() => setIsOpen(false)}>
-                                <Button variant="outline" className="w-full">Log in</Button>
-                            </Link>
+                            {currentUser ? (
+                                <>
+                                    <p className="text-sm font-black uppercase opacity-40">Logged in as {currentUser.email}</p>
+                                    <Button variant="outline" className="w-full" onClick={logout}>Log out</Button>
+                                </>
+                            ) : (
+                                <Link to="/login" onClick={() => setIsOpen(false)}>
+                                    <Button variant="outline" className="w-full">Log in</Button>
+                                </Link>
+                            )}
                             <Link to="/assessment" onClick={() => setIsOpen(false)}>
                                 <Button className="w-full">Start Assessment</Button>
                             </Link>

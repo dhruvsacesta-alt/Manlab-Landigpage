@@ -12,18 +12,56 @@ const AssessmentResults = () => {
     const [answers, setAnswers] = useState({});
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        const user = localStorage.getItem('manlab_user');
         const savedAnswers = JSON.parse(localStorage.getItem('manlab_assessment') || '{}');
+        const cachedReport = JSON.parse(localStorage.getItem('manlab_active_report') || 'null');
+
+        if (!user) {
+            localStorage.setItem('redirect_after_login', '/assessment/results');
+            navigate('/login');
+            return;
+        }
+
+        // Check for cached report (handles refresh)
+        if (cachedReport) {
+            setDiagnosis(cachedReport.diagnosis);
+            setAnswers(cachedReport.answers);
+            setIsAnalyzing(false);
+            return;
+        }
+
+        // If no answers and no cache, go back to start
+        if (Object.keys(savedAnswers).length === 0) {
+            navigate('/assessment');
+            return;
+        }
+
+        // New: Check if consent was given before showing results
+        if (!savedAnswers.finasteride_consent) {
+            navigate('/assessment/consent');
+            return;
+        }
+
+        window.scrollTo(0, 0);
         setAnswers(savedAnswers);
 
         const timer = setTimeout(() => {
             const result = calculateDiagnosis(savedAnswers);
             setDiagnosis(result);
+
+            // Cache the complete report for refreshes
+            localStorage.setItem('manlab_active_report', JSON.stringify({
+                diagnosis: result,
+                answers: savedAnswers
+            }));
+
             setIsAnalyzing(false);
+            // Clear temporary draft answers as requested
+            localStorage.removeItem('manlab_assessment');
         }, 3000);
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [navigate]);
 
     if (isAnalyzing) {
         return (
