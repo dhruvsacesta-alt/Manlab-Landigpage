@@ -83,19 +83,19 @@ const Signup = () => {
     };
 
     return (
-        <div className="min-h-screen pt-24 pb-20 bg-[var(--background)] flex items-center justify-center px-4">
+        <div className="min-h-screen pt-32 pb-20 bg-[var(--background)] flex items-center justify-center px-4">
             <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="w-full max-w-[440px]"
+                className="w-full max-w-lg"
             >
-                <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden border border-black/5">
-                    <div className="absolute top-0 left-0 w-24 h-24 bg-[var(--primary)]/5 rounded-br-[60px] pointer-events-none"></div>
+                <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-32 h-32 bg-[var(--accent)]/10 rounded-br-[100px] pointer-events-none"></div>
 
                     <div className="text-center mb-10">
-                        <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[var(--primary)]/50 mb-2 block">Premium Clinical Access</span>
-                        <h2 className="text-2xl font-bold font-heading mb-2 uppercase tracking-tight">Register Profile.</h2>
-                        <p className="text-xs opacity-40 font-medium">Join 2M+ men on the path to vitality.</p>
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--primary)] mb-2 block">Premium Care Access</span>
+                        <h2 className="text-3xl font-black font-heading mb-2">Create Account.</h2>
+                        <p className="text-sm opacity-50">Join 2M+ men taking control of their vitality.</p>
                     </div>
 
                     <AnimatePresence>
@@ -104,26 +104,26 @@ const Signup = () => {
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
-                                className="mb-6 p-4 bg-red-50 border border-red-100 rounded-xl flex items-center gap-3 text-red-600 text-xs font-bold"
+                                className="mb-6 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3 text-red-600 text-sm font-medium"
                             >
-                                <AlertCircle size={14} />
+                                <AlertCircle size={18} />
                                 {errors.submit}
                             </motion.div>
                         )}
                     </AnimatePresence>
 
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                        <div className="grid md:grid-cols-2 gap-3">
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="grid md:grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <label className="block text-[9px] font-bold uppercase tracking-[0.2em] opacity-30 ml-1">Full Name</label>
+                                <label className="block text-[10px] font-black uppercase tracking-widest opacity-50 ml-1">Full Name</label>
                                 <div className="relative">
-                                    <User className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${errors.name ? 'text-red-400' : 'text-[var(--primary)]'} opacity-30`} size={16} />
+                                    <User className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${errors.name ? 'text-red-400' : 'text-[var(--primary)]'} opacity-50`} size={18} />
                                     <input
                                         type="text"
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className={`w-full bg-[var(--surface)]/30 border transition-all rounded-xl h-11 pl-11 pr-4 outline-none text-sm font-medium ${errors.name ? 'border-red-200 focus:border-red-400' : 'border-black/5 focus:border-[var(--primary)]/30'}`}
+                                        className={`w-full bg-[var(--surface)] border transition-all rounded-xl py-4 pl-12 pr-4 outline-none font-medium ${errors.name ? 'border-red-200 focus:border-red-400' : 'border-transparent focus:border-[var(--primary)]'}`}
                                         placeholder="Ex: Aman Singh"
                                     />
                                 </div>
@@ -131,16 +131,16 @@ const Signup = () => {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="block text-[9px] font-bold uppercase tracking-[0.2em] opacity-30 ml-1">Mobile</label>
+                                <label className="block text-[10px] font-black uppercase tracking-widest opacity-50 ml-1">Phone Number</label>
                                 <div className="relative">
-                                    <Phone className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${errors.phone ? 'text-red-400' : 'text-[var(--primary)]'} opacity-30`} size={16} />
+                                    <Phone className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${errors.phone ? 'text-red-400' : 'text-[var(--primary)]'} opacity-50`} size={18} />
                                     <input
                                         type="tel"
                                         name="phone"
                                         maxLength="10"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        className={`w-full bg-[var(--surface)]/30 border transition-all rounded-xl h-11 pl-11 pr-4 outline-none text-sm font-medium ${errors.phone ? 'border-red-200 focus:border-red-400' : 'border-black/5 focus:border-[var(--primary)]/30'}`}
+                                        className={`w-full bg-[var(--surface)] border transition-all rounded-xl py-4 pl-12 pr-4 outline-none font-medium ${errors.phone ? 'border-red-200 focus:border-red-400' : 'border-transparent focus:border-[var(--primary)]'}`}
                                         placeholder="9876543210"
                                     />
                                 </div>
@@ -149,15 +149,15 @@ const Signup = () => {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="block text-[9px] font-bold uppercase tracking-[0.2em] opacity-30 ml-1">Protocol Identifier (Email)</label>
+                            <label className="block text-[10px] font-black uppercase tracking-widest opacity-50 ml-1">Email Address</label>
                             <div className="relative">
-                                <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${errors.email ? 'text-red-400' : 'text-[var(--primary)]'} opacity-30`} size={16} />
+                                <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${errors.email ? 'text-red-400' : 'text-[var(--primary)]'} opacity-50`} size={18} />
                                 <input
                                     type="email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className={`w-full bg-[var(--surface)]/30 border transition-all rounded-xl h-11 pl-11 pr-4 outline-none text-sm font-medium ${errors.email ? 'border-red-200 focus:border-red-400' : 'border-black/5 focus:border-[var(--primary)]/30'}`}
+                                    className={`w-full bg-[var(--surface)] border transition-all rounded-xl py-4 pl-12 pr-4 outline-none font-medium ${errors.email ? 'border-red-200 focus:border-red-400' : 'border-transparent focus:border-[var(--primary)]'}`}
                                     placeholder="name@example.com"
                                 />
                             </div>
@@ -165,58 +165,59 @@ const Signup = () => {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="block text-[9px] font-bold uppercase tracking-[0.2em] opacity-30 ml-1">Security Key (Password)</label>
+                            <label className="block text-[10px] font-black uppercase tracking-widest opacity-50 ml-1">Secure Password</label>
                             <div className="relative">
-                                <Lock className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${errors.password ? 'text-red-400' : 'text-[var(--primary)]'} opacity-30`} size={16} />
+                                <Lock className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${errors.password ? 'text-red-400' : 'text-[var(--primary)]'} opacity-50`} size={18} />
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     name="password"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className={`w-full bg-[var(--surface)]/30 border transition-all rounded-xl h-11 pl-11 pr-11 outline-none text-sm font-medium ${errors.password ? 'border-red-200 focus:border-red-400' : 'border-black/5 focus:border-[var(--primary)]/30'}`}
+                                    className={`w-full bg-[var(--surface)] border transition-all rounded-xl py-4 pl-12 pr-12 outline-none font-medium ${errors.password ? 'border-red-200 focus:border-red-400' : 'border-transparent focus:border-[var(--primary)]'}`}
                                     placeholder="••••••••"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--primary)] opacity-30 hover:opacity-100 transition-opacity"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--primary)] opacity-50 hover:opacity-100 transition-opacity"
                                 >
-                                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                 </button>
+                                {!errors.password && formData.password && !showPassword && (
+                                    <CheckCircle2 className="absolute right-12 top-1/2 -translate-y-1/2 text-green-500 opacity-50" size={18} />
+                                )}
                             </div>
                             {errors.password ? (
-                                <p className="text-[9px] font-bold text-red-500 uppercase tracking-wider ml-1 leading-tight">{errors.password}</p>
+                                <p className="text-[9px] font-bold text-red-500 uppercase tracking-wider ml-1">{errors.password}</p>
                             ) : (
-                                <p className="text-[9px] font-medium opacity-30 ml-1">Requires 8+ chars, 1 number & 1 special char</p>
+                                <p className="text-[9px] font-medium opacity-40 ml-1">Requires 8+ chars, 1 number & 1 special character</p>
                             )}
                         </div>
 
                         <Button
                             type="submit"
-                            className="w-full h-12 text-[10px] uppercase font-bold tracking-widest relative overflow-hidden group shrink-0"
+                            className="w-full py-4 text-base font-black group relative overflow-hidden"
                             disabled={isSubmitting}
                         >
-                            <span className={`flex items-center justify-center gap-2 transition-all duration-300 ${isSubmitting ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}>
-                                Register Profile <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                            <span className={`flex items-center justify-center gap-2 transition-transform duration-300 ${isSubmitting ? '-translate-y-10' : ''}`}>
+                                Start Free Assessment <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                             </span>
                             {isSubmitting && (
                                 <span className="absolute inset-0 flex items-center justify-center">
-                                    <Loader2 className="animate-spin" size={18} />
+                                    <Loader2 className="animate-spin" size={20} />
                                 </span>
                             )}
                         </Button>
                     </form>
 
-                    <div className="mt-8 text-center pt-8 border-t border-black/5">
-                        <p className="text-[10px] font-medium opacity-40 uppercase tracking-widest leading-relaxed">
-                            Already registered?{' '}
-                            <Link to="/login" className="text-[var(--primary)] font-bold hover:underline ml-1">
+                    <div className="mt-8 text-center text-[10px] opacity-50 leading-relaxed max-w-xs mx-auto font-medium">
+                        By creating an account, you agree to our <Link to="/terms" className="underline font-bold hover:text-[var(--primary)]">Terms</Link> and <Link to="/privacy" className="underline font-bold hover:text-[var(--primary)]">Privacy Policy</Link>.
+                        <div className="mt-4 text-sm font-medium">
+                            Already have an account?{' '}
+                            <Link to="/login" className="text-[var(--primary)] font-black hover:underline">
                                 Log In
                             </Link>
-                        </p>
-                        <p className="text-[8px] opacity-20 mt-4 uppercase tracking-[0.2em]">
-                            By registering, you agree to our Terms & Privacy Policy.
-                        </p>
+                        </div>
                     </div>
                 </div>
             </motion.div>

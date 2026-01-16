@@ -16,68 +16,71 @@ const Navbar = () => {
     }, []);
 
     const links = [
-        { name: 'Physiology', path: '/' },
-        { name: 'Scientific Base', path: '/about' },
-        { name: 'Research Journal', path: '/blogs' },
-        { name: 'Clinical Support', path: '/contact' },
+        { name: 'How it works', path: '/' },
+        { name: 'About us', path: '/about' },
+        { name: 'Expert Blog', path: '/blogs' },
+        { name: 'Contact Support', path: '/contact' },
     ];
 
 
     return (
-        <nav className={`glass-nav flex items-center transition-all duration-500 z-[1000] ${isScrolled ? 'h-14 md:h-16 bg-[var(--background)]/80 backdrop-blur-md border-b border-[var(--primary)]/5' : 'h-20 md:h-28'}`}>
-            <div className="container-wide flex justify-between items-center w-full px-6 md:px-12">
-                <Link to="/" className="flex items-center gap-3 transition-transform hover:scale-105">
+        <nav className={`glass-nav flex items-center transition-all duration-500 ${isScrolled ? 'h-16' : 'h-20 md:h-24'}`}>
+            <div className="container-wide flex justify-between items-center w-full">
+                <Link to="/" className="flex items-center gap-3 transition-all duration-500">
                     <AnimatePresence mode="wait">
                         {isScrolled ? (
                             <motion.img
                                 key="scrolled"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{ duration: 0.2 }}
                                 src="/logo.png"
                                 alt="Man Labs"
-                                className="h-10 md:h-13 w-auto grayscale"
+                                className="h-10 w-auto"
                             />
                         ) : (
                             <motion.img
                                 key="top"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                transition={{ duration: 0.2 }}
                                 src="/logo_full.png"
                                 alt="Man Labs"
-                                className="h-11 md:h-16 w-auto"
+                                className="h-6 md:h-10 w-auto"
                             />
                         )}
                     </AnimatePresence>
                 </Link>
 
+
+
                 {/* Desktop Links */}
-                <div className="hidden lg:flex items-center gap-12">
+                <div className="hidden lg:flex items-center gap-10">
                     {links.map((link) => (
                         <Link
                             key={link.name}
                             to={link.path}
-                            className={`text-[10px] uppercase font-bold tracking-[0.3em] transition-all hover:text-[var(--primary)] relative group ${location.pathname === link.path ? 'text-[var(--primary)]' : 'text-[var(--text-dark)] opacity-40 hover:opacity-100'}`}
+                            className={`text-sm font-medium transition-colors hover:text-[var(--primary)] ${location.pathname === link.path ? 'text-[var(--primary)]' : 'text-[var(--text-light)]'}`}
                         >
                             {link.name}
-                            <span className={`absolute -bottom-2 left-0 w-full h-[1px] bg-[var(--primary)] transition-transform duration-500 scale-x-0 group-hover:scale-x-100 ${location.pathname === link.path ? 'scale-x-100' : ''}`} />
                         </Link>
                     ))}
                 </div>
 
-                <div className="hidden lg:flex items-center gap-8">
-                    <Link to="/login" className="text-[10px] uppercase font-bold tracking-[0.3em] text-[var(--text-dark)] opacity-30 hover:opacity-100 transition-all">
-                        Authenticate
+                <div className="hidden lg:flex items-center gap-4">
+                    <Link to="/login">
+                        <Button variant="ghost">Log in</Button>
                     </Link>
                     <Link to="/assessment">
-                        <Button className="h-[42px] px-8 text-[10px] font-bold uppercase tracking-[0.2em] bg-[var(--primary)] text-white shadow-xl shadow-[var(--primary)]/20 hover:bg-[var(--primary-hover)] border-0">Start Protocol</Button>
+                        <Button>Start Assessment</Button>
                     </Link>
                 </div>
 
                 {/* Mobile Toggle */}
-                <button className="lg:hidden text-[var(--text-dark)] opacity-50 hover:opacity-100 transition-opacity" onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                <button className="lg:hidden text-[var(--primary)]" onClick={() => setIsOpen(!isOpen)}>
+                    {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
             </div>
 
@@ -88,33 +91,25 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 h-screen bg-white/95 backdrop-blur-3xl lg:hidden z-[999] overflow-y-auto"
+                        className="fixed top-20 left-0 w-full h-[calc(100vh-80px)] bg-white/95 backdrop-blur-xl lg:hidden z-[999] overflow-y-auto"
                     >
-                        <div className="min-h-screen flex flex-col items-center justify-center p-12 text-center gap-10">
-                            <button onClick={() => setIsOpen(false)} className="absolute top-8 right-8 text-[var(--text-dark)] opacity-30">
-                                <X size={32} strokeWidth={1} />
-                            </button>
-
-                            <img src="/logo.png" alt="Man Labs" className="h-20 w-auto mb-12 brightness-0 opacity-40" />
-
+                        <div className="p-8 flex flex-col gap-6">
                             {links.map((link) => (
                                 <Link
                                     key={link.name}
                                     to={link.path}
-                                    className="text-lg uppercase font-bold tracking-[0.4em] text-[var(--text-dark)] opacity-40 hover:opacity-100 transition-all hover:scale-110"
+                                    className="text-xl font-bold"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.name}
                                 </Link>
                             ))}
-
-                            <div className="w-full max-w-xs h-[1px] bg-[var(--primary)]/10 my-6" />
-
-                            <Link to="/assessment" className="w-full max-w-xs" onClick={() => setIsOpen(false)}>
-                                <Button className="w-full text-[11px] font-bold uppercase tracking-[0.3em] h-14 bg-[var(--primary)] text-white shadow-2xl shadow-[var(--primary)]/20">Start Protocol</Button>
+                            <hr />
+                            <Link to="/login" onClick={() => setIsOpen(false)}>
+                                <Button variant="outline" className="w-full">Log in</Button>
                             </Link>
-                            <Link to="/login" className="text-[11px] font-bold uppercase tracking-[0.4em] text-[var(--primary)] opacity-60" onClick={() => setIsOpen(false)}>
-                                Authentication
+                            <Link to="/assessment" onClick={() => setIsOpen(false)}>
+                                <Button className="w-full">Start Assessment</Button>
                             </Link>
                         </div>
                     </motion.div>

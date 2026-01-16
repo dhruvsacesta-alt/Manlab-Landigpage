@@ -4,72 +4,67 @@ import { Shield, MessageCircle, Instagram, Twitter, Linkedin } from 'lucide-reac
 
 const Footer = () => {
     return (
-        <footer className="bg-[var(--text-dark)] text-white/40 py-32 md:py-48 border-t border-white/5">
+        <footer className="bg-[var(--text-dark)] text-white/80 py-24">
             <div className="container-wide">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-20 md:gap-32 mb-32 max-w-7xl mx-auto">
-                    <div className="md:col-span-1">
-                        <img src="/logo.png" alt="Man Labs" className="h-20 w-auto mb-12 brightness-0 invert opacity-60" />
-                        <p className="text-sm md:text-base leading-relaxed mb-12 font-medium italic opacity-50">
-                            "Systemic clinical interventions for physiological optimization. India's primary pharmacological distribution platform for male aesthetics."
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
+                    <div className="col-span-1 md:col-span-1">
+                        <h3 className="text-white text-3xl font-black mb-8" style={{ fontFamily: 'var(--font-heading)' }}>Man Labs</h3>
+                        <p className="text-sm leading-relaxed mb-8 opacity-60">
+                            India's premier digital health clinic for men. We combine breakthrough science with personalized medical care to solve hair loss.
                         </p>
-                        <div className="flex gap-6">
-                            {[Instagram, Twitter, Linkedin].map((Icon, i) => (
-                                <a key={i} href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-[var(--primary)] hover:text-white transition-all text-white/30 shadow-sm">
-                                    <Icon size={16} strokeWidth={1.2} />
-                                </a>
-                            ))}
+                        <div className="flex gap-4">
+                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                                <Instagram size={18} />
+                            </a>
+                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                                <Twitter size={18} />
+                            </a>
+                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                                <Linkedin size={18} />
+                            </a>
                         </div>
                     </div>
 
                     <div>
-                        <h4 className="text-[var(--primary)] font-bold mb-10 uppercase text-[10px] tracking-[0.4em] opacity-60">Institutional</h4>
-                        <ul className="space-y-6 text-sm font-bold uppercase tracking-tight">
-                            <li><Link to="/about" className="hover:text-white transition-all opacity-40 hover:opacity-100 decoration-1 hover:underline underline-offset-8 transition-all">Scientific Base</Link></li>
-                            <li><Link to="/blogs" className="hover:text-white transition-all opacity-40 hover:opacity-100 decoration-1 hover:underline underline-offset-8 transition-all">Research Journal</Link></li>
-                            <li><Link to="/contact" className="hover:text-white transition-all opacity-40 hover:opacity-100 decoration-1 hover:underline underline-offset-8 transition-all">Clinical Support</Link></li>
+                        <h4 className="text-white font-bold mb-8 font-accent uppercase text-xs tracking-widest">Company</h4>
+                        <ul className="space-y-4 text-sm">
+                            <li><Link to="/about" className="hover:text-white transition-colors">Our Mission</Link></li>
+                            <li><Link to="/blogs" className="hover:text-white transition-colors">Expert Journal</Link></li>
+                            <li><Link to="/contact" className="hover:text-white transition-colors">Contact Support</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 className="text-[var(--primary)] font-bold mb-10 uppercase text-[10px] tracking-[0.4em] opacity-60">Protocols</h4>
-                        <ul className="space-y-6 text-sm font-bold uppercase tracking-tight">
-                            <li><Link to="/assessment" className="hover:text-white transition-all opacity-40 hover:opacity-100 decoration-1 hover:underline underline-offset-8 transition-all">Start Diagnosis</Link></li>
-                            <li><Link to="/login" className="hover:text-white transition-all opacity-40 hover:opacity-100 decoration-1 hover:underline underline-offset-8 transition-all">Authentication</Link></li>
-                            <li><Link to="/coming-soon" className="hover:text-white transition-all opacity-40 hover:opacity-100 decoration-1 hover:underline underline-offset-8 transition-all">Pharmacology</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="text-[var(--primary)] font-bold mb-10 uppercase text-[10px] tracking-[0.4em] opacity-60">Operational</h4>
-                        <div className="space-y-8">
-                            <div className="flex items-center gap-6 group cursor-pointer">
-                                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white border border-white/10 group-hover:scale-105 group-hover:bg-[var(--primary)] transition-all">
-                                    <MessageCircle size={18} strokeWidth={1.2} />
+                        <h4 className="text-white font-bold mb-8 font-accent uppercase text-xs tracking-widest">Medical Support</h4>
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-4 group cursor-pointer">
+                                <div className="w-12 h-12 rounded-2xl bg-[#25D366]/10 flex items-center justify-center text-[#25D366] group-hover:bg-[#25D366]/20 transition-colors">
+                                    <MessageCircle size={20} />
                                 </div>
-                                <div className="opacity-40 group-hover:opacity-100 transition-opacity">
-                                    <p className="text-xs font-bold text-white uppercase tracking-widest">Protocol WA</p>
-                                    <p className="text-[10px] uppercase tracking-widest mt-1">24/7 Connectivity</p>
+                                <div>
+                                    <p className="text-xs font-bold text-white">WhatsApp 24/7</p>
+                                    <p className="text-[10px] opacity-50">Real-time medical support</p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-6 group cursor-pointer">
-                                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white border border-white/10 group-hover:scale-105 group-hover:bg-[var(--primary)] transition-all">
-                                    <Shield size={18} strokeWidth={1.2} />
+                            <div className="flex items-center gap-4 group cursor-pointer">
+                                <div className="w-12 h-12 rounded-2xl bg-[var(--primary)]/20 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--primary)]/30 transition-colors">
+                                    <Shield size={20} />
                                 </div>
-                                <div className="opacity-40 group-hover:opacity-100 transition-opacity">
-                                    <p className="text-xs font-bold text-white uppercase tracking-widest">HIPAA Protocol</p>
-                                    <p className="text-[10px] uppercase tracking-widest mt-1">Encrypted Data</p>
+                                <div>
+                                    <p className="text-xs font-bold text-white">Secure Data</p>
+                                    <p className="text-[10px] opacity-50">HIPAA Compliant Privacy</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10 max-w-7xl mx-auto">
-                    <p className="text-[10px] uppercase tracking-[0.4em] opacity-20 text-center md:text-left leading-loose">© 2025 Man Labs India • Institutional Medical Oversight Mandatory • Pharmacological Standards Council</p>
-                    <div className="flex gap-12 text-[10px] uppercase tracking-[0.3em] opacity-30 font-bold">
-                        <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
-                        <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-                        <Link to="/medical-disclaimer" className="hover:text-white transition-colors">Safety</Link>
+                <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+                    <p className="text-[10px] uppercase tracking-widest opacity-40">© 2025 Man Labs India. All medical decisions are made by licensed physicians.</p>
+                    <div className="flex gap-8 text-[10px] uppercase tracking-widest opacity-60">
+                        <Link to="/terms">Terms</Link>
+                        <Link to="/privacy">Privacy</Link>
+                        <Link to="/medical-disclaimer">Medical Disclaimer</Link>
                     </div>
                 </div>
             </div>
